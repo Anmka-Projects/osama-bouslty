@@ -1,0 +1,4 @@
+/* Permission usage descriptions — English */
+"NSCameraUsageDescription" = "We need access to the camera to take your profile picture.";
+"NSPhotoLibraryUsageDescription" = "We need access to your photos to choose a profile picture.";
+"NSPhotoLibraryAddUsageDescription" = "We need access to your photos to choose a profile picture.";

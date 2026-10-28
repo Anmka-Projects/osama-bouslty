@@ -1,0 +1,4 @@
+/* Permission usage descriptions — Arabic */
+"NSCameraUsageDescription" = "نحتاج إلى الوصول إلى الكاميرا لالتقاط صورة الملف الشخصي";
+"NSPhotoLibraryUsageDescription" = "نحتاج إلى الوصول إلى الصور لاختيار صورة الملف الشخصي";
+"NSPhotoLibraryAddUsageDescription" = "نحتاج إلى الوصول إلى الصور لاختيار صورة الملف الشخصي";

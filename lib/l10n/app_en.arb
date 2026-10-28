@@ -1,0 +1,2465 @@
+{
+  "@@locale": "en",
+  "appName": "Bouslty",
+  "@appName": {
+    "description": "Application name"
+  },
+  
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings screen title"
+  },
+  "generalSettings": "General Settings",
+  "@generalSettings": {
+    "description": "General settings section title"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Notifications setting"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode setting"
+  },
+  "privacyAndSecurity": "Privacy & Security",
+  "@privacyAndSecurity": {
+    "description": "Privacy and security setting"
+  },
+  "helpAndSupport": "Help & Support",
+  "@helpAndSupport": {
+    "description": "Help and support setting"
+  },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "description": "Change password"
+  },
+  "arabic": "Arabic",
+  "@arabic": {
+    "description": "Arabic language name"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language name"
+  },
+  "selectLanguage": "Select Language",
+  "@selectLanguage": {
+    "description": "Language selection dialog title"
+  },
+  "languageChanged": "Language changed to {name}",
+  "@languageChanged": {
+    "description": "Language change success message",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "preferencesUpdated": "Preferences updated successfully",
+  "@preferencesUpdated": {
+    "description": "Preferences update success message"
+  },
+  "errorUpdatingPreferences": "Error updating preferences",
+  "@errorUpdatingPreferences": {
+    "description": "Preferences update error message"
+  },
+  "user": "User",
+  "@user": {
+    "description": "Default user name"
+  },
+  
+  "login": "Login",
+  "@login": {
+    "description": "Login screen title"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email field"
+  },
+  "emailOptional": "Email (Optional)",
+  "@emailOptional": {
+    "description": "Optional email field on register"
+  },
+  "emailOrPhone": "Email or Phone Number",
+  "@emailOrPhone": {
+    "description": "Email or phone number field"
+  },
+  "enterEmailOrPhone": "Enter your email or phone number",
+  "@enterEmailOrPhone": {
+    "description": "Enter email or phone placeholder text"
+  },
+  "invalidEmailOrPhone": "Invalid email or phone number",
+  "@invalidEmailOrPhone": {
+    "description": "Invalid email or phone error message"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password field"
+  },
+  "forgotPassword": "Forgot Password?",
+  "@forgotPassword": {
+    "description": "Forgot password link"
+  },
+  "noAccount": "Don't have an account?",
+  "@noAccount": {
+    "description": "No account text"
+  },
+  "registerNow": "Register Now",
+  "@registerNow": {
+    "description": "Register link"
+  },
+  "invalidEmail": "Invalid email address",
+  "@invalidEmail": {
+    "description": "Invalid email error message"
+  },
+  "pleaseEnterEmail": "Please enter your email",
+  "@pleaseEnterEmail": {
+    "description": "Enter email message"
+  },
+  "pleaseEnterPassword": "Please enter your password",
+  "@pleaseEnterPassword": {
+    "description": "Enter password message"
+  },
+  "welcomeBack": "Welcome back! 👋",
+  "@welcomeBack": {
+    "description": "Welcome message in login"
+  },
+  "enterEmail": "Enter your email",
+  "@enterEmail": {
+    "description": "Email placeholder text"
+  },
+  "enterPassword": "Enter your password",
+  "@enterPassword": {
+    "description": "Password placeholder text"
+  },
+  "fieldRequired": "This field is required",
+  "@fieldRequired": {
+    "description": "Field required message"
+  },
+  "or": "OR",
+  "@or": {
+    "description": "OR"
+  },
+  "google": "Google",
+  "@google": {
+    "description": "Google"
+  },
+  "apple": "Apple",
+  "@apple": {
+    "description": "Apple"
+  },
+  
+  "register": "Create New Account",
+  "@register": {
+    "description": "Register screen title"
+  },
+  "joinUsMessage": "Join us and start your learning journey 🎓",
+  "@joinUsMessage": {
+    "description": "Welcome message in register"
+  },
+  "fullName": "Full Name",
+  "@fullName": {
+    "description": "Full name field"
+  },
+  "pleaseEnterName": "Enter your full name",
+  "@pleaseEnterName": {
+    "description": "Enter name message"
+  },
+  "phone": "Phone Number",
+  "@phone": {
+    "description": "Phone number field"
+  },
+  "phoneOptional": "Phone Number (Optional)",
+  "@phoneOptional": {
+    "description": "Optional phone number field on register"
+  },
+  "phonePlaceholder": "01xxxxxxxxx",
+  "@phonePlaceholder": {
+    "description": "Phone number placeholder"
+  },
+  "studentType": "Student type",
+  "@studentType": {
+    "description": "Student type label"
+  },
+  "inPersonStudent": "In-class student",
+  "@inPersonStudent": {
+    "description": "On-campus student option"
+  },
+  "onlineStudent": "Online student",
+  "@onlineStudent": {
+    "description": "Online student option"
+  },
+  "bothStudentTypes": "Both",
+  "@bothStudentTypes": {
+    "description": "Both option"
+  },
+  "selectStudentType": "Please choose your student type",
+  "@selectStudentType": {
+    "description": "Validation message for student type"
+  },
+  "invalidPhone": "Invalid phone number",
+  "@invalidPhone": {
+    "description": "Invalid phone number error message"
+  },
+  "enterPasswordAgain": "Enter password again",
+  "@enterPasswordAgain": {
+    "description": "Enter password again"
+  },
+  "iAgreeTo": "I agree to",
+  "@iAgreeTo": {
+    "description": "I agree to"
+  },
+  "pleaseAcceptTerms": "Please accept the terms and conditions",
+  "@pleaseAcceptTerms": {
+    "description": "Please accept the terms and conditions"
+  },
+  "createAccount": "Create Account",
+  "@createAccount": {
+    "description": "Create Account"
+  },
+  "alreadyHaveAccount": "Already have an account?",
+  "@alreadyHaveAccount": {
+    "description": "Already have an account?"
+  },
+  "termsAndConditions": "Terms and Conditions",
+  "@termsAndConditions": {
+    "description": "Terms and conditions"
+  },
+  
+  "home": "Home",
+  "@home": {
+    "description": "Home page"
+  },
+  "courses": "Courses",
+  "@courses": {
+    "description": "Courses"
+  },
+  "progress": "Progress",
+  "@progress": {
+    "description": "Progress"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile"
+  },
+  
+  "featuredCourses": "Featured Courses",
+  "@featuredCourses": {
+    "description": "Featured courses"
+  },
+  "homePromoSliderEmpty": "No banners at the moment",
+  "@homePromoSliderEmpty": {
+    "description": "Home promo carousel when there are no slider items"
+  },
+  "categories": "Categories",
+  "subcategories": "Subcategories",
+  "@categories": {
+    "description": "Categories"
+  },
+  "category": "Category",
+  "@category": {
+    "description": "Category"
+  },
+  "educationalStage": "Educational Stage",
+  "@educationalStage": {
+    "description": "Educational stage (top-level category) field label on register screen"
+  },
+  "selectEducationalStage": "Select your educational stage",
+  "@selectEducationalStage": {
+    "description": "Hint/validation text for the educational stage dropdown"
+  },
+  "grade": "Grade",
+  "@grade": {
+    "description": "Grade (subcategory) field label on register screen"
+  },
+  "selectGrade": "Select your grade",
+  "@selectGrade": {
+    "description": "Hint/validation text for the grade dropdown"
+  },
+  "startLearningJourney": "Start Your Learning Journey",
+  "@startLearningJourney": {
+    "description": "Hero banner text"
+  },
+  "discount50": "50% off on all courses",
+  "@discount50": {
+    "description": "Discount text"
+  },
+  "subscribeNow": "Subscribe Now",
+  "@subscribeNow": {
+    "description": "Subscribe button"
+  },
+  
+  "all": "All",
+  "@all": {
+    "description": "All"
+  },
+  "newest": "Newest",
+  "@newest": {
+    "description": "Newest"
+  },
+  "highestRated": "Highest Rated",
+  "@highestRated": {
+    "description": "Highest rated"
+  },
+  "bestSelling": "Best Selling",
+  "@bestSelling": {
+    "description": "Best selling"
+  },
+  "priceLowToHigh": "Price: Low to High",
+  "@priceLowToHigh": {
+    "description": "Price low to high"
+  },
+  "priceHighToLow": "Price: High to Low",
+  "@priceHighToLow": {
+    "description": "Price high to low"
+  },
+  "errorLoadingCourses": "Error loading courses",
+  "@errorLoadingCourses": {
+    "description": "Courses loading error message"
+  },
+  
+  "instructor": "Instructor",
+  "@instructor": {
+    "description": "Instructor"
+  },
+  "lessons": "Lessons",
+  "@lessons": {
+    "description": "Lessons"
+  },
+  "lesson": "Lesson",
+  "@lesson": {
+    "description": "Lesson"
+  },
+  "course": "Course",
+  "@course": {
+    "description": "Course"
+  },
+  "courseSuitable": "This course is suitable for both beginners and professionals.",
+  "@courseSuitable": {
+    "description": "Course description"
+  },
+  "enrolledSuccessfully": "Enrolled in course successfully",
+  "@enrolledSuccessfully": {
+    "description": "Enrollment success message"
+  },
+  "errorEnrolling": "Error enrolling in course",
+  "@errorEnrolling": {
+    "description": "Enrollment error message"
+  },
+  "addedToWishlist": "Added to wishlist",
+  "@addedToWishlist": {
+    "description": "Added to wishlist message"
+  },
+  "removedFromWishlist": "Removed from wishlist",
+  "@removedFromWishlist": {
+    "description": "Removed from wishlist message"
+  },
+  "errorWishlist": "Error {action} wishlist",
+  "@errorWishlist": {
+    "description": "Wishlist error message",
+    "placeholders": {
+      "action": {
+        "type": "String"
+      }
+    }
+  },
+  "addingTo": "adding to",
+  "@addingTo": {
+    "description": "Adding to"
+  },
+  "removingFrom": "removing from",
+  "@removingFrom": {
+    "description": "Removing from"
+  },
+  "wishlistTitle": "Wishlist",
+  "@wishlistTitle": {
+    "description": "Wishlist screen title and profile/settings entry"
+  },
+  "wishlistMenuSubtitle": "Saved courses — open to view or remove",
+  "@wishlistMenuSubtitle": {
+    "description": "Subtitle under wishlist entry on profile"
+  },
+  "wishlistEmptyTitle": "No saved courses",
+  "@wishlistEmptyTitle": {
+    "description": "Empty wishlist heading"
+  },
+  "wishlistEmptyDescription": "Open any course and tap the bookmark to add it here.",
+  "@wishlistEmptyDescription": {
+    "description": "Empty wishlist helper text"
+  },
+  "startExam": "Start Exam",
+  "@startExam": {
+    "description": "Start exam"
+  },
+  "errorStartingExam": "Error starting exam",
+  "@errorStartingExam": {
+    "description": "Start exam error message"
+  },
+  "submitExam": "Submit Exam",
+  "@submitExam": {
+    "description": "Submit exam"
+  },
+  "errorSubmittingExam": "Error submitting exam",
+  "@errorSubmittingExam": {
+    "description": "Submit exam error message"
+  },
+  "practiceExam": "Practice Exam",
+  "@practiceExam": {
+    "description": "Practice exam"
+  },
+  "question": "Question",
+  "@question": {
+    "description": "Question"
+  },
+  "questionNumber": "Question {number}",
+  "@questionNumber": {
+    "description": "Question number",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Next"
+  },
+  "previous": "Previous",
+  "@previous": {
+    "description": "Previous"
+  },
+  "timeTaken": "Time taken: {minutes} minutes",
+  "@timeTaken": {
+    "description": "Time taken",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "downloads": "Downloads",
+  "@downloads": {
+    "description": "Downloads"
+  },
+  "downloadLinkReceived": "Download link received. Download will start soon...",
+  "@downloadLinkReceived": {
+    "description": "Download link message"
+  },
+  "errorDownloading": "Error downloading: {error}",
+  "@errorDownloading": {
+    "description": "Download error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "fileDeleted": "File deleted successfully",
+  "@fileDeleted": {
+    "description": "Delete success message"
+  },
+  "errorDeleting": "Error deleting: {error}",
+  "@errorDeleting": {
+    "description": "Delete error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "certificates": "Certificates",
+  "@certificates": {
+    "description": "Certificates"
+  },
+  "downloadSuccessful": "Downloaded successfully: {path}",
+  "@downloadSuccessful": {
+    "description": "Download success message",
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "errorDownloadingFile": "Error downloading file: {error}",
+  "@errorDownloadingFile": {
+    "description": "File download error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorSharing": "Error sharing",
+  "@errorSharing": {
+    "description": "Share error message"
+  },
+  "student": "Student",
+  "@student": {
+    "description": "Student"
+  },
+  
+  "liveCourses": "Live Courses",
+  "@liveCourses": {
+    "description": "Live courses"
+  },
+  "liveCoursesMenuSubtitle": "Join live sessions & reminders",
+  "@liveCoursesMenuSubtitle": {
+    "description": "Student dashboard: Live courses tile subtitle (not coming soon)"
+  },
+  "liveSessionsStatusScheduled": "Scheduled",
+  "@liveSessionsStatusScheduled": {
+    "description": "Live courses list: sessions that have not started yet (header count / chip)"
+  },
+  "registeredSuccessfully": "Registered for session successfully",
+  "@registeredSuccessfully": {
+    "description": "Registration success message"
+  },
+  "errorRegistering": "Error registering for session",
+  "@errorRegistering": {
+    "description": "Registration error message"
+  },
+  "sunday": "Sunday",
+  "@sunday": {
+    "description": "Sunday"
+  },
+  "monday": "Monday",
+  "@monday": {
+    "description": "Monday"
+  },
+  "tuesday": "Tuesday",
+  "@tuesday": {
+    "description": "Tuesday"
+  },
+  "wednesday": "Wednesday",
+  "@wednesday": {
+    "description": "Wednesday"
+  },
+  "thursday": "Thursday",
+  "@thursday": {
+    "description": "Thursday"
+  },
+  "friday": "Friday",
+  "@friday": {
+    "description": "Friday"
+  },
+  "saturday": "Saturday",
+  "@saturday": {
+    "description": "Saturday"
+  },
+  
+  "enrolledLessons": "Enrolled Lessons",
+  "@enrolledLessons": {
+    "description": "Enrolled lessons"
+  },
+  "savedFiles": "Saved Files",
+  "@savedFiles": {
+    "description": "Saved files"
+  },
+  "mainMenu": "Main Menu",
+  "@mainMenu": {
+    "description": "Main menu"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout"
+  },
+  "errorLoggingOut": "Error logging out: {error}",
+  "@errorLoggingOut": {
+    "description": "Logout error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "now": "Now",
+  "@now": {
+    "description": "Now"
+  },
+  "lessonNumber": "Lesson {current} of {total}",
+  "@lessonNumber": {
+    "description": "Lesson number",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "allLessonsCompleted": "All lessons completed",
+  "@allLessonsCompleted": {
+    "description": "All lessons completed"
+  },
+  
+  "previousLesson": "Previous Lesson",
+  "@previousLesson": {
+    "description": "Previous lesson"
+  },
+  "nextLesson": "Next Lesson",
+  "@nextLesson": {
+    "description": "Next lesson"
+  },
+  "duration": "Duration: {duration}",
+  "@duration": {
+    "description": "Lesson duration",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "notSpecified": "Not specified",
+  "@notSpecified": {
+    "description": "Not specified"
+  },
+  
+  "design": "Design",
+  "@design": {
+    "description": "Design"
+  },
+  "programming": "Programming",
+  "@programming": {
+    "description": "Programming"
+  },
+  "marketing": "Marketing",
+  "@marketing": {
+    "description": "Marketing"
+  },
+  "data": "Data",
+  "@data": {
+    "description": "Data"
+  },
+  
+  "checkout": "Checkout",
+  "@checkout": {
+    "description": "Checkout"
+  },
+  "discountApplied": "Discount applied successfully",
+  "@discountApplied": {
+    "description": "Discount application success message"
+  },
+  "errorCheckingDiscount": "Error checking discount code",
+  "@errorCheckingDiscount": {
+    "description": "Discount check error message"
+  },
+  "purchaseSuccessful": "Purchase completed successfully",
+  "@purchaseSuccessful": {
+    "description": "Purchase success message"
+  },
+  "errorCompletingPayment": "Error completing payment",
+  "@errorCompletingPayment": {
+    "description": "Payment completion error message"
+  },
+  "errorProcessingPayment": "Error processing payment",
+  "@errorProcessingPayment": {
+    "description": "Payment processing error message"
+  },
+  "discount20": "20% discount applied",
+  "@discount20": {
+    "description": "20% discount message"
+  },
+  "discount": "Discount",
+  "@discount": {
+    "description": "Discount"
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Total"
+  },
+  
+  "editProfile": "Edit Profile",
+  "@editProfile": {
+    "description": "Edit profile"
+  },
+  "errorLoadingProfile": "Error loading profile",
+  "@errorLoadingProfile": {
+    "description": "Profile loading error message"
+  },
+  "profileUpdated": "Profile updated successfully",
+  "@profileUpdated": {
+    "description": "Profile update success message"
+  },
+  "errorUpdatingProfile": "Error updating profile: {error}",
+  "@errorUpdatingProfile": {
+    "description": "Profile update error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "country": "Country (Optional)",
+  "@country": {
+    "description": "Country"
+  },
+  "timezone": "Timezone (Optional)",
+  "@timezone": {
+    "description": "Timezone"
+  },
+  "name": "Name",
+  "@name": {
+    "description": "Name"
+  },
+  "bio": "About You",
+  "@bio": {
+    "description": "About You"
+  },
+  "saveChanges": "Save Changes",
+  "@saveChanges": {
+    "description": "Save Changes"
+  },
+  "selectImageSource": "Select Image Source",
+  "@selectImageSource": {
+    "description": "Select Image Source"
+  },
+  "camera": "Camera",
+  "@camera": {
+    "description": "Camera"
+  },
+  "gallery": "Gallery",
+  "@gallery": {
+    "description": "Gallery"
+  },
+  "cameraPermissionDenied": "Camera permission denied. Please allow camera access from settings",
+  "@cameraPermissionDenied": {
+    "description": "Camera permission denied message"
+  },
+  "galleryPermissionDenied": "Gallery permission denied. Please allow photo access from settings",
+  "@galleryPermissionDenied": {
+    "description": "Gallery permission denied message"
+  },
+  "errorPickingImage": "Error picking image",
+  "@errorPickingImage": {
+    "description": "Error picking image message"
+  },
+  "avatarUploaded": "Avatar uploaded successfully",
+  "@avatarUploaded": {
+    "description": "Avatar uploaded success message"
+  },
+  "errorUploadingAvatar": "Error uploading avatar: {error}",
+  "@errorUploadingAvatar": {
+    "description": "Error uploading avatar message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "passwordChanged": "Password changed successfully",
+  "@passwordChanged": {
+    "description": "Password change success message"
+  },
+  "errorChangingPassword": "Error changing password: {error}",
+  "@errorChangingPassword": {
+    "description": "Password change error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "currentPassword": "Current Password",
+  "@currentPassword": {
+    "description": "Current password"
+  },
+  "newPassword": "New Password",
+  "@newPassword": {
+    "description": "New password"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Confirm password"
+  },
+  "pleaseEnterCurrentPassword": "Please enter current password",
+  "@pleaseEnterCurrentPassword": {
+    "description": "Enter current password message"
+  },
+  "pleaseEnterNewPassword": "Please enter new password",
+  "@pleaseEnterNewPassword": {
+    "description": "Enter new password message"
+  },
+  "pleaseConfirmPassword": "Please confirm password",
+  "@pleaseConfirmPassword": {
+    "description": "Confirm password message"
+  },
+  
+  "forgotPasswordTitle": "Forgot Password?",
+  "@forgotPasswordTitle": {
+    "description": "Forgot password title"
+  },
+  "backToLogin": "Back to Login",
+  "@backToLogin": {
+    "description": "Back to login"
+  },
+  "sentSuccessfully": "Sent successfully!",
+  "@sentSuccessfully": {
+    "description": "Send success message"
+  },
+  "resetPasswordSent": "Password reset link has been sent to your email",
+  "@resetPasswordSent": {
+    "description": "Password reset link sent message"
+  },
+  "resetPasswordTitle": "Reset Password",
+  "@resetPasswordTitle": {
+    "description": "Reset password title"
+  },
+  "resetPasswordDescription": "Enter your email to send a reset link",
+  "@resetPasswordDescription": {
+    "description": "Reset password description"
+  },
+  "sendResetLink": "Send Link",
+  "@sendResetLink": {
+    "description": "Send reset link button"
+  },
+  "sendToAnotherEmail": "Send to another email",
+  "@sendToAnotherEmail": {
+    "description": "Send to another email"
+  },
+  
+  "exams": "Exam",
+  "@exams": {
+    "description": "Exam"
+  },
+  "questionOf": "Question {current} of {total}",
+  "@questionOf": {
+    "description": "Question of",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "finishExam": "Finish Exam",
+  "@finishExam": {
+    "description": "Finish exam"
+  },
+  "finalResult": "Final Result",
+  "@finalResult": {
+    "description": "Final result"
+  },
+  "correctAnswers": "Correct Answers",
+  "@correctAnswers": {
+    "description": "Correct answers"
+  },
+  "wrongAnswers": "Wrong Answers",
+  "@wrongAnswers": {
+    "description": "Wrong answers"
+  },
+  
+  "notificationsTitle": "Notifications",
+  "@notificationsTitle": {
+    "description": "Notifications screen title"
+  },
+  
+  "science": "Knowledge is the light that illuminates your path",
+  "@science": {
+    "description": "Splash screen text"
+  },
+  "success": "Success starts with a step",
+  "@success": {
+    "description": "Splash screen text"
+  },
+  "nextStep": "Next",
+  "@nextStep": {
+    "description": "Next"
+  },
+  "startNow": "Start Now",
+  "@startNow": {
+    "description": "Start now"
+  },
+  
+  "myCourses": "My Courses",
+  "@myCourses": {
+    "description": "My Courses"
+  },
+  "subjects": "Subject",
+  "@subjects": {
+    "description": "Subject"
+  },
+  "lessonsCount": "{count} lessons",
+  "@lessonsCount": {
+    "description": "Number of lessons",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coursesCount": "{count} courses",
+  "@coursesCount": {
+    "description": "Number of courses",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "free": "Free",
+  "@free": {
+    "description": "Free"
+  },
+  "paid": "Paid",
+  "@paid": {
+    "description": "Paid"
+  },
+  "allCourses": "All Courses",
+  "@allCourses": {
+    "description": "All Courses"
+  },
+  "coursesAvailable": "{count} courses available",
+  "@coursesAvailable": {
+    "description": "Number of courses available",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchCourse": "Search for a course...",
+  "@searchCourse": {
+    "description": "Search for a course"
+  },
+  "noResults": "No results",
+  "@noResults": {
+    "description": "No results"
+  },
+  "tryDifferentSearch": "Try searching with different words or change filters",
+  "@tryDifferentSearch": {
+    "description": "Try searching with different words"
+  },
+  "egyptianPound": "{amount} EGP",
+  "@egyptianPound": {
+    "description": "Egyptian Pound",
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "noCourseData": "No course data available",
+  "@noCourseData": {
+    "description": "No course data available"
+  },
+  "courseTitle": "Course Title",
+  "@courseTitle": {
+    "description": "Course Title"
+  },
+  "trialExam": "Trial Exam",
+  "@trialExam": {
+    "description": "Trial Exam"
+  },
+  "noLessonsAvailable": "No lessons available",
+  "@noLessonsAvailable": {
+    "description": "No lessons available"
+  },
+  "certifiedCertificate": "Certified certificate upon completion",
+  "@certifiedCertificate": {
+    "description": "Certified certificate"
+  },
+  "loadingExam": "Loading exam...",
+  "@loadingExam": {
+    "description": "Loading exam"
+  },
+  "noTrialExamAvailable": "No trial exam available",
+  "@noTrialExamAvailable": {
+    "description": "No trial exam available"
+  },
+  "startExamButton": "Start Exam",
+  "@startExamButton": {
+    "description": "Start Exam"
+  },
+  "notAvailable": "Not Available",
+  "@notAvailable": {
+    "description": "Not Available"
+  },
+  "enrolling": "Enrolling...",
+  "@enrolling": {
+    "description": "Enrolling"
+  },
+  "startLearningNow": "Start Learning Now",
+  "@startLearningNow": {
+    "description": "Start Learning Now"
+  },
+  "enrollFree": "Enroll Free",
+  "@enrollFree": {
+    "description": "Enroll Free"
+  },
+  "enrollInCourse": "Enroll in Course",
+  "@enrollInCourse": {
+    "description": "Enroll in Course"
+  },
+  "loginRequired": "Login required",
+  "@loginRequired": {
+    "description": "Login required"
+  },
+  "noQuestionsAvailable": "No questions available in exam",
+  "@noQuestionsAvailable": {
+    "description": "No questions available"
+  },
+  "finishExamButton": "Finish Exam",
+  "@finishExamButton": {
+    "description": "Finish Exam"
+  },
+  "loadingQuestions": "Loading questions...",
+  "@loadingQuestions": {
+    "description": "Loading questions"
+  },
+  "finish": "Finish",
+  "@finish": {
+    "description": "Finish"
+  },
+  "examResultPercentageLabel": "Percentage: {percent}%",
+  "@examResultPercentageLabel": {
+    "description": "Shown after exam submit using API percentage field",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "examResultCorrectSummary": "{correct} of {total} correct answers",
+  "@examResultCorrectSummary": {
+    "description": "Correct answers count after exam",
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "examResultGreatJobTitle": "Great job! 🎉",
+  "@examResultGreatJobTitle": {
+    "description": "Headline when exam passed"
+  },
+  "examResultTryAgainTitle": "Try again",
+  "@examResultTryAgainTitle": {
+    "description": "Headline when exam not passed"
+  },
+  "downloadLinkUnavailable": "Download link unavailable",
+  "@downloadLinkUnavailable": {
+    "description": "Download link unavailable"
+  },
+  "downloading": "Downloading...",
+  "@downloading": {
+    "description": "Downloading"
+  },
+  "cannotAccessDownloads": "Cannot access downloads folder",
+  "@cannotAccessDownloads": {
+    "description": "Cannot access downloads folder"
+  },
+  "certificateCompletion": "Certificate of Completion: {course}",
+  "@certificateCompletion": {
+    "description": "Certificate of Completion",
+    "placeholders": {
+      "course": {
+        "type": "String"
+      }
+    }
+  },
+  "certificateNumber": "Certificate Number: {number}",
+  "@certificateNumber": {
+    "description": "Certificate Number",
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "verificationLink": "Verification Link: {url}",
+  "@verificationLink": {
+    "description": "Verification Link",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "download": "Download",
+  "@download": {
+    "description": "Download"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "Share"
+  },
+  "noCertificatesYet": "No certificates yet",
+  "@noCertificatesYet": {
+    "description": "No certificates yet"
+  },
+  "completeCoursesForCertificates": "Complete courses to get certified certificates",
+  "@completeCoursesForCertificates": {
+    "description": "Complete courses to get certificates"
+  },
+  "gettingDownloadLink": "Getting download link...",
+  "@gettingDownloadLink": {
+    "description": "Getting download link"
+  },
+  "deleteFile": "Delete File",
+  "@deleteFile": {
+    "description": "Delete File"
+  },
+  "confirmDeleteFile": "Are you sure you want to delete this file?",
+  "@confirmDeleteFile": {
+    "description": "Confirm delete file"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete"
+  },
+  "noDownloads": "No downloads",
+  "@noDownloads": {
+    "description": "No downloads"
+  },
+  "willOpenOffline": "Course will open in offline mode",
+  "@willOpenOffline": {
+    "description": "Course will open in offline mode"
+  },
+  "noLiveSessions": "No live sessions available",
+  "@noLiveSessions": {
+    "description": "No live sessions available"
+  },
+  "sessionsComingSoon": "Upcoming sessions will be added soon",
+  "@sessionsComingSoon": {
+    "description": "Sessions will be added soon"
+  },
+  "willOpenSessionLink": "Session link will open",
+  "@willOpenSessionLink": {
+    "description": "Session link will open"
+  },
+  "sessionLinkUnavailable": "Session link unavailable",
+  "@sessionLinkUnavailable": {
+    "description": "Session link unavailable"
+  },
+  "comingSoon": "Coming Soon",
+  "@comingSoon": {
+    "description": "Coming Soon"
+  },
+  "startsIn": "Starts in",
+  "@startsIn": {
+    "description": "Starts in"
+  },
+  "hour": "hour",
+  "@hour": {
+    "description": "hour"
+  },
+  "minute": "minute",
+  "@minute": {
+    "description": "minute"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout"
+  },
+  "confirmLogout": "Are you sure you want to logout?",
+  "@confirmLogout": {
+    "description": "Confirm logout"
+  },
+  "loggingOut": "Logging out...",
+  "@loggingOut": {
+    "description": "Logging out"
+  },
+  "myExams": "My Exams",
+  "@myExams": {
+    "description": "My Exams"
+  },
+  "viewAllExams": "View all completed exams",
+  "@viewAllExams": {
+    "description": "View all completed exams"
+  },
+  "exam": "Exam",
+  "@exam": {
+    "description": "Exam"
+  },
+  "noCompletedExams": "No completed exams",
+  "@noCompletedExams": {
+    "description": "No completed exams"
+  },
+  "startCompletingExams": "Start completing exams to see your results here",
+  "@startCompletingExams": {
+    "description": "Start completing exams"
+  },
+  "examListNotAttempted": "Not taken",
+  "@examListNotAttempted": {
+    "description": "My exams list: exam has no submitted attempt yet"
+  },
+  "ago": "A while ago",
+  "@ago": {
+    "description": "A while ago"
+  },
+  "daysAgo": "{days, plural, =1 {1 day ago} other {{days} days ago}}",
+  "@daysAgo": {
+    "description": "Days ago",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{hours, plural, =1 {1 hour ago} other {{hours} hours ago}}",
+  "@hoursAgo": {
+    "description": "Hours ago",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesAgo": "{minutes, plural, =1 {1 minute ago} other {{minutes} minutes ago}}",
+  "@minutesAgo": {
+    "description": "Minutes ago",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "activeCourse": "{count} active courses",
+  "@activeCourse": {
+    "description": "Active courses",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteAccount": "Delete Account",
+  "@deleteAccount": {
+    "description": "Delete Account"
+  },
+  "confirmDeleteAccount": "Are you sure you want to permanently delete your account? This cannot be undone. All your data, enrollments, and progress will be removed.",
+  "@confirmDeleteAccount": {
+    "description": "Confirm delete account warning"
+  },
+  "deleteAccountPasswordHint": "Enter your password to confirm",
+  "@deleteAccountPasswordHint": {
+    "description": "Password field hint for account deletion"
+  },
+  "deletingAccount": "Deleting account...",
+  "@deletingAccount": {
+    "description": "Loading text while deleting account"
+  },
+  "accountDeletedSuccessfully": "Your account has been deleted",
+  "@accountDeletedSuccessfully": {
+    "description": "Success message after account deletion"
+  },
+  "errorDeletingAccount": "Error deleting account: {error}",
+  "@errorDeletingAccount": {
+    "description": "Error deleting account",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordRequiredToDelete": "Password is required to delete your account",
+  "@passwordRequiredToDelete": {
+    "description": "Validation when password is empty on delete"
+  },
+
+  "myAccount": "My Account",
+  "@myAccount": {
+    "description": "My Account"
+  },
+  "customizeApp": "Customize App",
+  "@customizeApp": {
+    "description": "Customize App"
+  },
+  "progress": "Progress",
+  "@progress": {
+    "description": "Progress"
+  },
+  "allSubjects": "All Subjects",
+  "@allSubjects": {
+    "description": "All Subjects"
+  },
+  "weekly": "Weekly",
+  "@weekly": {
+    "description": "Weekly"
+  },
+  "monthly": "Monthly",
+  "@monthly": {
+    "description": "Monthly"
+  },
+  "studentRating": "Student Rating",
+  "@studentRating": {
+    "description": "Student Rating"
+  },
+  "top10Students": "Top 10 Students",
+  "@top10Students": {
+    "description": "Top 10 Students"
+  },
+  "myExamsButton": "My Exams",
+  "@myExamsButton": {
+    "description": "My Exams"
+  },
+  "viewAllCompletedExams": "View all completed exams",
+  "@viewAllCompletedExams": {
+    "description": "View all completed exams"
+  },
+  "welcome": "Welcome, {name} 👋",
+  "@welcome": {
+    "description": "Welcome",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "visitor": "Visitor",
+  "@visitor": {
+    "description": "Visitor"
+  },
+  "excellentStudent": "Excellent Student",
+  "@excellentStudent": {
+    "description": "Excellent Student"
+  },
+  "specialOffer": "Special Offer",
+  "@specialOffer": {
+    "description": "Special Offer"
+  },
+  "subscribeNowButton": "Subscribe Now",
+  "@subscribeNowButton": {
+    "description": "Subscribe Now"
+  },
+  "enrolledCourse": "Enrolled Course",
+  "@enrolledCourse": {
+    "description": "Enrolled Course"
+  },
+  "learningHours": "Learning Hours",
+  "@learningHours": {
+    "description": "Learning Hours"
+  },
+  "continueLearning": "Continue Learning",
+  "@continueLearning": {
+    "description": "Continue Learning"
+  },
+  "recommendedCourses": "Recommended Courses",
+  "@recommendedCourses": {
+    "description": "Recommended Courses"
+  },
+  "viewMore": "View More",
+  "@viewMore": {
+    "description": "View More"
+  },
+  "searchPlaceholder": "Search for a course, instructor, or topic...",
+  "@searchPlaceholder": {
+    "description": "Search for a course, instructor, or topic"
+  },
+  "noResultsFound": "No results found",
+  "@noResultsFound": {
+    "description": "No results found"
+  },
+  "selectSubject": "Select the subject you want to learn",
+  "@selectSubject": {
+    "description": "Select the subject you want to learn"
+  },
+  "noCategories": "No categories",
+  "@noCategories": {
+    "description": "No categories"
+  },
+  "categoriesComingSoon": "Categories will be added soon",
+  "@categoriesComingSoon": {
+    "description": "Categories will be added soon"
+  },
+  "course": "Course",
+  "@course": {
+    "description": "Course"
+  },
+  "courses": "Courses",
+  "@courses": {
+    "description": "Courses"
+  },
+  "passwordMismatch": "Passwords do not match",
+  "@passwordMismatch": {
+    "description": "Passwords do not match"
+  },
+  "passwordMinLength": "Password must be at least 8 characters",
+  "@passwordMinLength": {
+    "description": "Password must be at least 8 characters"
+  },
+  "passwordNeedsUppercase": "Password must include an uppercase letter",
+  "@passwordNeedsUppercase": {
+    "description": "Password must include an uppercase letter"
+  },
+  "passwordNeedsLowercase": "Password must include a lowercase letter",
+  "@passwordNeedsLowercase": {
+    "description": "Password must include a lowercase letter"
+  },
+  "passwordNeedsDigit": "Password must include a number",
+  "@passwordNeedsDigit": {
+    "description": "Password must include a number"
+  },
+  "passwordNeedsSpecial": "Password must include a special character",
+  "@passwordNeedsSpecial": {
+    "description": "Password must include a special character"
+  },
+  "passwordOnlyLettersAndDigits": "Password may only contain letters and numbers",
+  "@passwordOnlyLettersAndDigits": {
+    "description": "Password contains invalid characters"
+  },
+  "passwordNeedsLetter": "Password must include a letter",
+  "@passwordNeedsLetter": {
+    "description": "Password must include a letter"
+  },
+  "confirmNewPassword": "Confirm New Password",
+  "@confirmNewPassword": {
+    "description": "Confirm New Password"
+  },
+  "invalidCouponCode": "Invalid coupon code",
+  "@invalidCouponCode": {
+    "description": "Invalid coupon code"
+  },
+  "completePurchase": "Complete Purchase",
+  "@completePurchase": {
+    "description": "Complete Purchase"
+  },
+  "enterCouponCode": "Enter coupon code",
+  "@enterCouponCode": {
+    "description": "Enter coupon code"
+  },
+  "apply": "Apply",
+  "@apply": {
+    "description": "Apply"
+  },
+  "paymentMethod": "Payment Method",
+  "@paymentMethod": {
+    "description": "Payment Method"
+  },
+  "fawry": "Fawry",
+  "@fawry": {
+    "description": "Fawry"
+  },
+  "payAtFawryBranch": "Pay at any Fawry branch",
+  "@payAtFawryBranch": {
+    "description": "Pay at any Fawry branch"
+  },
+  "eWallet": "E-Wallet",
+  "@eWallet": {
+    "description": "E-Wallet"
+  },
+  "walletDescription": "Vodafone Cash - Etisalat Cash - Orange Cash",
+  "@walletDescription": {
+    "description": "E-Wallet description"
+  },
+  "visaMastercard": "Visa / Mastercard",
+  "@visaMastercard": {
+    "description": "Visa / Mastercard"
+  },
+  "creditDebitCard": "Credit or Debit Card",
+  "@creditDebitCard": {
+    "description": "Credit or Debit Card"
+  },
+  "orderSummary": "Order Summary",
+  "@orderSummary": {
+    "description": "Order Summary"
+  },
+  "coursePrice": "Course Price",
+  "@coursePrice": {
+    "description": "Course Price"
+  },
+  "egyptianPoundAmount": "{amount} EGP",
+  "@egyptianPoundAmount": {
+    "description": "Egyptian Pound",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmPayment": "Confirm Payment",
+  "@confirmPayment": {
+    "description": "Confirm Payment"
+  },
+  "processing": "Processing...",
+  "@processing": {
+    "description": "Processing"
+  },
+  "noCourse": "No course",
+  "@noCourse": {
+    "description": "No course"
+  },
+  "dateNotSpecified": "Date not specified",
+  "@dateNotSpecified": {
+    "description": "Date not specified"
+  },
+  "certifiesThat": "Certifies that",
+  "@certifiesThat": {
+    "description": "Certifies that"
+  },
+  "hasCompletedWithGrade": "has completed this course with grade",
+  "@hasCompletedWithGrade": {
+    "description": "has completed this course with grade"
+  },
+  "excellent": "Excellent",
+  "@excellent": {
+    "description": "Excellent"
+  },
+  "math": "Mathematics",
+  "@math": {
+    "description": "Mathematics"
+  },
+  "literature": "Literature",
+  "@literature": {
+    "description": "Literature"
+  },
+  "biology": "Biology",
+  "@biology": {
+    "description": "Biology"
+  },
+  "physics": "Physics",
+  "@physics": {
+    "description": "Physics"
+  },
+  "chemistry": "Chemistry",
+  "@chemistry": {
+    "description": "Chemistry"
+  },
+  "practicalEngineering": "Practical Engineering",
+  "@practicalEngineering": {
+    "description": "Practical Engineering"
+  },
+  "creativePlaneShapes": "Creative Approaches to Plane Shapes",
+  "@creativePlaneShapes": {
+    "description": "Creative Approaches to Plane Shapes"
+  },
+  "cellularBiologyDiscoveries": "Discoveries in Cellular Biology",
+  "@cellularBiologyDiscoveries": {
+    "description": "Discoveries in Cellular Biology"
+  },
+  "introduction": "Introduction",
+  "@introduction": {
+    "description": "Introduction"
+  },
+  "whatIsDesign": "What is Design?",
+  "@whatIsDesign": {
+    "description": "What is Design?"
+  },
+  "howToCreateWireframe": "How to Create Wireframe",
+  "@howToCreateWireframe": {
+    "description": "How to Create Wireframe"
+  },
+  "yourFirstDesign": "Your First Design",
+  "@yourFirstDesign": {
+    "description": "Your First Design"
+  },
+  "progressPercent": "Progress: {percent}%",
+  "@progressPercent": {
+    "description": "Progress",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "helloJacob": "Hello, Jacob 👋",
+  "@helloJacob": {
+    "description": "Hello, Jacob"
+  },
+  "startLearningJourneyMessage": "Start your learning journey and enroll in your first course",
+  "@startLearningJourneyMessage": {
+    "description": "Start your learning journey and enroll in your first course"
+  },
+  
+  "learnEasily": "Learn Easily",
+  "@learnEasily": {
+    "description": "Learn Easily"
+  },
+  "continuousProgress": "Continuous Progress",
+  "@continuousProgress": {
+    "description": "Continuous Progress"
+  },
+  "discoverBestCourses": "Discover the best educational courses with professional teachers from around the world",
+  "@discoverBestCourses": {
+    "description": "Discover the best educational courses"
+  },
+  "trackProgressAndGetCertificates": "Track your progress and get certified certificates upon course completion",
+  "@trackProgressAndGetCertificates": {
+    "description": "Track your progress and get certificates"
+  },
+  "smartLearningPlatform": "Smart Learning Platform",
+  "@smartLearningPlatform": {
+    "description": "Smart Learning Platform"
+  },
+  "certifiedAndSecure": "Certified and Secure Platform",
+  "@certifiedAndSecure": {
+    "description": "Certified and Secure Platform"
+  },
+  "everyDayNewOpportunity": "Every day is a new opportunity to learn",
+  "@everyDayNewOpportunity": {
+    "description": "Every day is a new opportunity to learn"
+  },
+  "version": "v1.0.0",
+  "@version": {
+    "description": "App version"
+  },
+  "enrolledCoursesCount": "{count} enrolled courses",
+  "@enrolledCoursesCount": {
+    "description": "Number of enrolled courses",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "averageProgress": "Average Progress",
+  "@averageProgress": {
+    "description": "Average Progress"
+  },
+  "completed": "Completed",
+  "@completed": {
+    "description": "Completed"
+  },
+  "lessonFrom": "Lesson {current} of {total}",
+  "@lessonFrom": {
+    "description": "Lesson from total",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "hourShort": "h",
+  "@hourShort": {
+    "description": "Hour short"
+  },
+  "minuteShort": "m",
+  "@minuteShort": {
+    "description": "Minute short unit for course duration"
+  },
+  "secondShort": "s",
+  "@secondShort": {
+    "description": "Second short unit for course duration"
+  },
+  "now": "Now",
+  "@now": {
+    "description": "Now"
+  },
+  "timeAgo": "A while ago",
+  "@timeAgo": {
+    "description": "A while ago"
+  },
+  "daysAgo": "{count, plural, =1 {1 day ago} other {{count} days ago}}",
+  "@daysAgo": {
+    "description": "Days ago",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{count, plural, =1 {1 hour ago} other {{count} hours ago}}",
+  "@hoursAgo": {
+    "description": "Hours ago",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesAgo": "{count, plural, =1 {1 minute ago} other {{count} minutes ago}}",
+  "@minutesAgo": {
+    "description": "Minutes ago",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noEnrolledCourses": "You haven't enrolled in any courses yet",
+  "@noEnrolledCourses": {
+    "description": "No enrolled courses"
+  },
+  "startLearningJourney": "Start your learning journey and enroll in your first course",
+  "@startLearningJourney": {
+    "description": "Start learning journey"
+  },
+  "exploreCourses": "Explore Courses",
+  "@exploreCourses": {
+    "description": "Explore Courses"
+  },
+  "noTitle": "No Title",
+  "@noTitle": {
+    "description": "No Title"
+  },
+  "egyptianPoundShort": "EGP",
+  "@egyptianPoundShort": {
+    "description": "Egyptian Pound short"
+  },
+  "errorLoadingNotifications": "Failed to load notifications: {error}",
+  "@errorLoadingNotifications": {
+    "description": "Error loading notifications",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorUpdatingNotification": "Failed to update notification: {error}",
+  "@errorUpdatingNotification": {
+    "description": "Error updating notification",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorUpdatingNotifications": "Failed to update notifications: {error}",
+  "@errorUpdatingNotifications": {
+    "description": "Error updating notifications",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "newNotifications": "New Notifications",
+  "@newNotifications": {
+    "description": "New Notifications"
+  },
+  "newNotificationsCount": "{count} new notifications",
+  "@newNotificationsCount": {
+    "description": "Number of new notifications",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "markAllAsRead": "Mark All as Read",
+  "@markAllAsRead": {
+    "description": "Mark All as Read"
+  },
+  "newSection": "New",
+  "@newSection": {
+    "description": "New"
+  },
+  "past": "Past",
+  "@past": {
+    "description": "Past"
+  },
+  "noNotifications": "No Notifications",
+  "@noNotifications": {
+    "description": "No Notifications"
+  },
+  "newNotificationsWillAppear": "New notifications will appear here",
+  "@newNotificationsWillAppear": {
+    "description": "New notifications will appear here"
+  },
+  "recently": "Recently",
+  "@recently": {
+    "description": "Recently"
+  },
+  "minutesAgoShort": "{count} minutes ago",
+  "@minutesAgoShort": {
+    "description": "Minutes ago",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgoShort": "{count} hours ago",
+  "@hoursAgoShort": {
+    "description": "Hours ago",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "daysAgoShort": "{count} days ago",
+  "@daysAgoShort": {
+    "description": "Days ago",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "totalExams": "Total Exams",
+  "@totalExams": {
+    "description": "Total Exams"
+  },
+  "passed": "Passed",
+  "@passed": {
+    "description": "Passed"
+  },
+  "failed": "Failed",
+  "@failed": {
+    "description": "Failed"
+  },
+  "undefinedDate": "Undefined date",
+  "@undefinedDate": {
+    "description": "Undefined date"
+  },
+  "monthJanuary": "January",
+  "@monthJanuary": {
+    "description": "January"
+  },
+  "monthFebruary": "February",
+  "@monthFebruary": {
+    "description": "February"
+  },
+  "monthMarch": "March",
+  "@monthMarch": {
+    "description": "March"
+  },
+  "monthApril": "April",
+  "@monthApril": {
+    "description": "April"
+  },
+  "monthMay": "May",
+  "@monthMay": {
+    "description": "May"
+  },
+  "monthJune": "June",
+  "@monthJune": {
+    "description": "June"
+  },
+  "monthJuly": "July",
+  "@monthJuly": {
+    "description": "July"
+  },
+  "monthAugust": "August",
+  "@monthAugust": {
+    "description": "August"
+  },
+  "monthSeptember": "September",
+  "@monthSeptember": {
+    "description": "September"
+  },
+  "monthOctober": "October",
+  "@monthOctober": {
+    "description": "October"
+  },
+  "monthNovember": "November",
+  "@monthNovember": {
+    "description": "November"
+  },
+  "monthDecember": "December",
+  "@monthDecember": {
+    "description": "December"
+  },
+  "downloadedFiles": "{count, plural, =1 {downloaded file} other {downloaded files}}",
+  "@downloadedFiles": {
+    "description": "Downloaded files",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "storage": "Storage",
+  "@storage": {
+    "description": "Storage"
+  },
+  "storageUsed": "{used} GB of {limit} GB used",
+  "@storageUsed": {
+    "description": "Storage used",
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "storageUsedMb": "{used} MB of {limit} MB used",
+  "@storageUsedMb": {
+    "description": "Storage used when displaying megabytes (avoids 0.0 GB for small usage)",
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "limit": {
+        "type": "String"
+      }
+    }
+  },
+  "file": "File",
+  "@file": {
+    "description": "File"
+  },
+  "undefinedSize": "Undefined size",
+  "@undefinedSize": {
+    "description": "Undefined size"
+  },
+  "watchOffline": "Watch Offline",
+  "@watchOffline": {
+    "description": "Watch Offline"
+  },
+  "fileIdNotAvailable": "File ID not available",
+  "@fileIdNotAvailable": {
+    "description": "File ID not available"
+  },
+  "gettingDownloadLink": "Getting download link...",
+  "@gettingDownloadLink": {
+    "description": "Getting download link"
+  },
+  "downloadLinkNotAvailable": "Download link not available",
+  "@downloadLinkNotAvailable": {
+    "description": "Download link not available"
+  },
+  "downloadLinkObtained": "Download link obtained. Download will start soon...",
+  "@downloadLinkObtained": {
+    "description": "Download link obtained"
+  },
+  "courseWillOpenOffline": "Course will open in offline mode",
+  "@courseWillOpenOffline": {
+    "description": "Course will open in offline mode"
+  },
+  "courseIdNotAvailable": "Course ID not available",
+  "@courseIdNotAvailable": {
+    "description": "Course ID not available"
+  },
+  "downloadCoursesToWatchOffline": "Download courses to watch offline",
+  "@downloadCoursesToWatchOffline": {
+    "description": "Download courses to watch offline"
+  },
+  "liveSessionsCount": "{count} {count, plural, =1 {session} other {sessions}} {status}",
+  "@liveSessionsCount": {
+    "description": "Number of sessions",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "live": "live",
+  "@live": {
+    "description": "live"
+  },
+  "upcoming": "upcoming",
+  "@upcoming": {
+    "description": "upcoming"
+  },
+  "liveSession": "Live Session",
+  "@liveSession": {
+    "description": "Live Session"
+  },
+  "liveNow": "Live Now",
+  "@liveNow": {
+    "description": "Live Now"
+  },
+  "remindMe": "Remind Me",
+  "@remindMe": {
+    "description": "Remind Me"
+  },
+  "joinNow": "Join Now",
+  "@joinNow": {
+    "description": "Join Now"
+  },
+  "liveSessionButtonEnded": "Session ended",
+  "@liveSessionButtonEnded": {
+    "description": "Course live session row when status is completed/cancelled"
+  },
+  "liveSessionButtonUpcoming": "Remind me",
+  "@liveSessionButtonUpcoming": {
+    "description": "Course live session before start: button label (upcoming / notification intent)"
+  },
+  "courseLiveSessionsTab": "Live",
+  "@courseLiveSessionsTab": {
+    "description": "Course details tab: live sessions for this course"
+  },
+  "liveSessionOpenLinkFailed": "Could not open the session link",
+  "@liveSessionOpenLinkFailed": {
+    "description": "Shown when url_launcher fails for a live session"
+  },
+  "registeredForSession": "Successfully registered for session",
+  "@registeredForSession": {
+    "description": "Successfully registered for session"
+  },
+  "mustLoginFirst": "Must login first",
+  "@mustLoginFirst": {
+    "description": "Must login first"
+  },
+  "day": "day",
+  "@day": {
+    "description": "day"
+  },
+  "second": "second",
+  "@second": {
+    "description": "second"
+  },
+  "oneHour": "1 hour",
+  "@oneHour": {
+    "description": "1 hour"
+  },
+  "achievedCertificates": "{count} achieved certificates",
+  "@achievedCertificates": {
+    "description": "Achieved certificates",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "certificateOfCompletion": "Certificate of Completion",
+  "@certificateOfCompletion": {
+    "description": "Certificate of Completion"
+  },
+  "student": "Student",
+  "@student": {
+    "description": "Student"
+  },
+  "excellent": "Excellent",
+  "@excellent": {
+    "description": "Excellent"
+  },
+  "downloadFailed": "Download failed: {code}",
+  "@downloadFailed": {
+    "description": "Download failed",
+    "placeholders": {
+      "code": {
+        "type": "int"
+      }
+    }
+  },
+  "certificateNumberLabel": "Certificate Number",
+  "@certificateNumberLabel": {
+    "description": "Certificate Number"
+  },
+  "verificationLinkLabel": "Verification Link",
+  "@verificationLinkLabel": {
+    "description": "Verification Link"
+  },
+  "centerAttendance": "Center Attendance",
+  "@centerAttendance": {
+    "description": "Center Attendance"
+  },
+  "centerAttendanceDescription": "Show this QR code at the center to mark your attendance",
+  "@centerAttendanceDescription": {
+    "description": "Center attendance description"
+  },
+  "loadingQrCode": "Loading QR code...",
+  "@loadingQrCode": {
+    "description": "Loading QR code"
+  },
+  "errorLoadingQrCode": "Error loading QR code",
+  "@errorLoadingQrCode": {
+    "description": "Error loading QR code"
+  },
+  "scanQrCodeInstruction": "Show this QR code to the center staff to mark your attendance",
+  "@scanQrCodeInstruction": {
+    "description": "Scan QR code instruction"
+  },
+  "refreshQrCode": "Refresh QR Code",
+  "@refreshQrCode": {
+    "description": "Refresh QR Code"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry"
+  },
+  "unknownError": "Unknown error occurred",
+  "@unknownError": {
+    "description": "Unknown error"
+  },
+  "teachers": "Teachers",
+  "@teachers": {
+    "description": "Teachers section title"
+  },
+  "allTeachers": "All Teachers",
+  "@allTeachers": {
+    "description": "All teachers page title"
+  },
+  "teacherFallback": "Teacher",
+  "@teacherFallback": {
+    "description": "Fallback teacher title"
+  },
+  "teacherCoursesTitle": "Courses offered",
+  "@teacherCoursesTitle": {
+    "description": "Title for teacher courses section"
+  },
+  "coursesCount": "{count} courses",
+  "@coursesCount": {
+    "description": "Courses count label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "studentsCount": "{count} students",
+  "@studentsCount": {
+    "description": "Students count label",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "choosePaymentMethod": "Payment method",
+  "@choosePaymentMethod": {
+    "description": "Checkout payment method section title"
+  },
+  "bankTransferYourDetails": "Your bank account",
+  "@bankTransferYourDetails": {
+    "description": "Title for bank transfer account fields"
+  },
+  "bankTransferHint": "Enter the account you transfer from so we can verify your payment.",
+  "@bankTransferHint": {
+    "description": "Hint under bank transfer fields"
+  },
+  "accountHolderName": "Account holder name",
+  "@accountHolderName": {
+    "description": "Bank account holder label"
+  },
+  "bankAccountNumberLabel": "Account / IBAN number",
+  "@bankAccountNumberLabel": {
+    "description": "Bank account number field label"
+  },
+  "transferReferenceOptional": "Transfer reference (optional)",
+  "@transferReferenceOptional": {
+    "description": "Optional transfer reference field"
+  },
+  "bankDetailsRequired": "Please enter account holder name and account number",
+  "@bankDetailsRequired": {
+    "description": "Validation when bank fields empty"
+  },
+  "checkoutPaymentBankTitle": "Bank transfer",
+  "@checkoutPaymentBankTitle": {
+    "description": "Course enrollment payment option — bank transfer"
+  },
+  "checkoutPaymentBankDescription": "Transfer to the academy bank account. You will enter your account details on the next step to verify payment.",
+  "@checkoutPaymentBankDescription": {
+    "description": "Course enrollment payment — bank description"
+  },
+  "checkoutPaymentLibraryTitle": "Purchase request",
+  "@checkoutPaymentLibraryTitle": {
+    "description": "Course enrollment — pay at library with receipt"
+  },
+  "checkoutPaymentLibraryDescription": "Send a purchase request to the administration; pay at the academy and get activated after approval.",
+  "@checkoutPaymentLibraryDescription": {
+    "description": "Course enrollment — library payment description"
+  },
+  "checkoutPaymentWhatsappTitle": "WhatsApp",
+  "@checkoutPaymentWhatsappTitle": {
+    "description": "Course enrollment — WhatsApp payment coordination"
+  },
+  "checkoutPaymentWhatsappDescription": "Contact us on WhatsApp to complete payment manually.",
+  "@checkoutPaymentWhatsappDescription": {
+    "description": "Course enrollment — WhatsApp description"
+  },
+  "checkoutNoPaymentMethods": "No payment methods are available right now. Please contact support.",
+  "@checkoutNoPaymentMethods": {
+    "description": "Shown when all course payment toggles are off in admin"
+  },
+  "checkoutSelectPaymentSubtitle": "Select a payment method to continue",
+  "@checkoutSelectPaymentSubtitle": {
+    "description": "Subtitle under payment method picker"
+  },
+  "libraryPaymentProcessTitle": "Purchase request",
+  "@libraryPaymentProcessTitle": {
+    "description": "Title for library cash payment instructions screen"
+  },
+  "libraryPaymentProcessSubtitle": "Follow these steps, then send your request. A summary is also sent in the request message.",
+  "@libraryPaymentProcessSubtitle": {
+    "description": "Subtitle explaining admin receives the process summary"
+  },
+  "libraryPaymentProcessSubtitleNoReceipt": "Send your purchase request below; the administration will review it and activate your course access after payment is confirmed.",
+  "@libraryPaymentProcessSubtitleNoReceipt": {
+    "description": "Subtitle when payment channel is library without receipt_image_url"
+  },
+  "whatsappPaymentProcessSubtitle": "Follow the two steps below, attach your receipt, then send your request to the administration.",
+  "@whatsappPaymentProcessSubtitle": {
+    "description": "Intro subtitle on WhatsApp bank-transfer payment screen"
+  },
+  "whatsappPaymentStep1": "Contact the coordinator on WhatsApp to request the bank account number for the transfer, then attach a photo of the receipt.",
+  "@whatsappPaymentStep1": {
+    "description": "WhatsApp payment step 1"
+  },
+  "whatsappPaymentStep2": "Tap “Send request to administrator”.",
+  "@whatsappPaymentStep2": {
+    "description": "WhatsApp payment step 2"
+  },
+  "whatsappPaymentAfterConfirmationNote": "After payment is confirmed, your course material will be unlocked.",
+  "@whatsappPaymentAfterConfirmationNote": {
+    "description": "Note after WhatsApp payment steps about access after admin confirms"
+  },
+  "libraryPaymentStep3NoReceipt": "Complete the payment as directed by the administration (at the academy or via the agreed channel).",
+  "@libraryPaymentStep3NoReceipt": {
+    "description": "Step 3 copy for library flow without image upload"
+  },
+  "libraryPaymentStep1": "Send a purchase request for the course using the button below.",
+  "libraryPaymentStep2": "The administration receives and reviews your request.",
+  "libraryPaymentStep3": "Attach a clear photo of your receipt below if you already have one.",
+  "libraryPaymentStep4": "Once payment is confirmed, the course is activated on your account.",
+  "libraryPaymentNotesLabel": "Notes for the administrator (optional)",
+  "libraryPaymentNotesHint": "Receipt number, payment date, or other details",
+  "libraryPaymentAttachReceipt": "Choose receipt photo (required)",
+  "libraryPaymentChangePhoto": "Change photo",
+  "libraryPaymentRemovePhoto": "Remove photo",
+  "libraryPaymentSendToAdmin": "Send request to administrator",
+  "libraryPaymentUploadingReceipt": "Uploading receipt…",
+  "libraryPaymentReceiptRequired": "Please choose a photo of your payment receipt.",
+  "enrollmentRequestPendingReview": "Your request has been received. It is under review and we will notify you when it is processed.",
+  "@enrollmentRequestPendingReview": {
+    "description": "After submitting library enrollment request to admin"
+  },
+  "whatsappPaymentSendReceiptTitle": "Send your receipt on WhatsApp",
+  "@whatsappPaymentSendReceiptTitle": {
+    "description": "Bottom sheet title for WhatsApp receipt flow"
+  },
+  "whatsappPaymentSendReceiptSubtitle": "Choose a clear photo of your payment receipt, then share it with us on WhatsApp so the admin can verify your payment.",
+  "@whatsappPaymentSendReceiptSubtitle": {
+    "description": "Instructions for WhatsApp receipt flow"
+  },
+  "whatsappPaymentPickReceiptButton": "Choose receipt photo",
+  "@whatsappPaymentPickReceiptButton": {
+    "description": "Picker button for WhatsApp receipt"
+  },
+  "whatsappPaymentShareReceiptButton": "Share receipt on WhatsApp",
+  "@whatsappPaymentShareReceiptButton": {
+    "description": "Opens system share with image for WhatsApp"
+  },
+  "whatsappPaymentReceiptRequired": "Please choose a photo of your payment receipt before sharing.",
+  "@whatsappPaymentReceiptRequired": {
+    "description": "Validation when sharing without image"
+  },
+  "whatsappReceiptShareCaption": "Payment receipt for course enrollment.\nCourse: {courseTitle}",
+  "@whatsappReceiptShareCaption": {
+    "description": "Caption sent with shared receipt image",
+    "placeholders": {
+      "courseTitle": {
+        "type": "String"
+      }
+    }
+  },
+  "whatsappPaymentShareFailed": "Could not open the share sheet. Try again or send your receipt manually on WhatsApp.",
+  "@whatsappPaymentShareFailed": {
+    "description": "When Share.shareXFiles fails"
+  },
+  "globalWhatsappFabMessage": "Hello, I would like to contact the academy.",
+  "@globalWhatsappFabMessage": {
+    "description": "Prefilled text when opening WhatsApp from global FAB"
+  },
+  "globalWhatsappFabUnavailable": "WhatsApp contact is not available right now.",
+  "@globalWhatsappFabUnavailable": {
+    "description": "Snackbar when config has no WhatsApp number"
+  },
+  "globalWhatsappFabContactLabel": "Contact us",
+  "@globalWhatsappFabContactLabel": {
+    "description": "Short label animated beside global WhatsApp FAB"
+  },
+  "checkoutWhatsappPrefillMessage": "Hello, I want to complete payment for this course and will send my payment receipt in this chat.\nCourse: {courseTitle}",
+  "@checkoutWhatsappPrefillMessage": {
+    "description": "Prefilled WhatsApp message after checkout",
+    "placeholders": {
+      "courseTitle": {
+        "type": "String"
+      }
+    }
+  },
+  "skillTrackTitle": "Course levels",
+  "@skillTrackTitle": {
+    "description": "Skill track screen title"
+  },
+  "skillTrackSubtitle": "Available courses — higher levels unlock previous courses automatically.",
+  "@skillTrackSubtitle": {
+    "description": "Skill track intro"
+  },
+  "skillTrackUnlockNote": "As you move up a level, all previous courses unlock automatically.",
+  "@skillTrackUnlockNote": {
+    "description": "Default unlock note on skill track"
+  },
+  "skillTrackHomeCta": "Course levels",
+  "@skillTrackHomeCta": {
+    "description": "Home entry card title for skill track"
+  },
+  "skillTrackHomeCtaSubtitle": "5 levels — bundle unlock",
+  "@skillTrackHomeCtaSubtitle": {
+    "description": "Home entry card subtitle"
+  },
+  "skillTrackIncludedFree": "Also unlocks for free:",
+  "@skillTrackIncludedFree": {
+    "description": "Label above bundled courses on tier card"
+  },
+  "skillTrackFree": "Free",
+  "@skillTrackFree": {
+    "description": "Free tier price label"
+  },
+  "skillTrackEnrolled": "Enrolled",
+  "@skillTrackEnrolled": {
+    "description": "Badge when user already has tier"
+  },
+  "skillTrackViewCourse": "View course",
+  "@skillTrackViewCourse": {
+    "description": "Link on tier card"
+  },
+  "skillTrackLoadError": "Could not load course levels. Pull to refresh or try again.",
+  "@skillTrackLoadError": {
+    "description": "Skill track load error"
+  },
+  "skillTrackBundleBannerTitle": "Included in this level",
+  "@skillTrackBundleBannerTitle": {
+    "description": "Bundle banner title on course details"
+  },
+  "skillTrackBundleBannerBody": "Purchasing this level also unlocks {count} previous course(s) at no extra charge.",
+  "@skillTrackBundleBannerBody": {
+    "description": "Bundle banner body on course details",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "skillTrackBundleUnlockedMessage": "{count} courses are now unlocked on your account.",
+  "@skillTrackBundleUnlockedMessage": {
+    "description": "Snackbar after checkout when bundle enrolls multiple courses",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "haveActivationCode": "Have an activation code?",
+  "@haveActivationCode": {
+    "description": "Row under payment methods that opens the activation code sheet"
+  },
+  "activationCodeSheetSubtitle": "Enter your code to unlock this course instantly.",
+  "@activationCodeSheetSubtitle": {
+    "description": "Subtitle in the activation code sheet/dialog"
+  },
+  "activationCodeDialogTitle": "Activation code",
+  "@activationCodeDialogTitle": {
+    "description": "Title of the activation code entry sheet"
+  },
+  "activationCodeFieldHint": "Enter the activation code",
+  "@activationCodeFieldHint": {
+    "description": "Hint inside the activation code text field"
+  },
+  "activationCodeSubmit": "Activate",
+  "@activationCodeSubmit": {
+    "description": "Submit button for the activation code"
+  },
+  "activationCodeRequired": "Please enter the activation code.",
+  "@activationCodeRequired": {
+    "description": "Validation error when the activation code field is empty"
+  },
+  "activationCodeSuccessFallback": "Course activated successfully.",
+  "@activationCodeSuccessFallback": {
+    "description": "Snackbar when redeem succeeds but the server sends no message"
+  },
+  "activationCodeInvalidFallback": "Could not activate this code. Check it and try again.",
+  "@activationCodeInvalidFallback": {
+    "description": "Fallback error when redeem fails without a server message"
+  },
+  "bankTransferProcessSubtitle": "Follow the steps below, then send your request to the administration.",
+  "@bankTransferProcessSubtitle": {
+    "description": "Intro subtitle on the bank-transfer enrollment request screen"
+  },
+  "bankTransferStep1": "Transfer the course fee to the academy's bank account (account details are shared by the academy).",
+  "@bankTransferStep1": {
+    "description": "Bank transfer enrollment request step 1"
+  },
+  "bankTransferStep2": "Write the sender name and transfer number or reference in the notes below.",
+  "@bankTransferStep2": {
+    "description": "Bank transfer enrollment request step 2"
+  },
+  "bankTransferStep3": "Attach a photo of the transfer receipt (optional but speeds up review), then send the request.",
+  "@bankTransferStep3": {
+    "description": "Bank transfer enrollment request step 3"
+  },
+  "bankTransferAttachReceiptOptional": "Choose receipt photo (optional)",
+  "@bankTransferAttachReceiptOptional": {
+    "description": "Receipt picker label when the receipt is not required"
+  },
+  "myEnrollmentRequests": "My enrollment requests",
+  "@myEnrollmentRequests": {
+    "description": "Title of the screen listing the student's enrollment requests"
+  },
+  "enrollmentRequestsEmpty": "No enrollment requests yet.",
+  "@enrollmentRequestsEmpty": {
+    "description": "Empty state on the my enrollment requests screen"
+  },
+  "enrollmentRequestsLoadError": "Could not load enrollment requests.",
+  "@enrollmentRequestsLoadError": {
+    "description": "Fallback error on the my enrollment requests screen"
+  },
+  "enrollmentRequestStatusPending": "Pending review",
+  "@enrollmentRequestStatusPending": {
+    "description": "Status label for a pending enrollment request"
+  },
+  "enrollmentRequestStatusApproved": "Approved",
+  "@enrollmentRequestStatusApproved": {
+    "description": "Status label for an approved enrollment request"
+  },
+  "enrollmentRequestStatusRejected": "Rejected",
+  "@enrollmentRequestStatusRejected": {
+    "description": "Status label for a rejected enrollment request"
+  },
+  "enrollmentRequestRejectionReason": "Rejection reason",
+  "@enrollmentRequestRejectionReason": {
+    "description": "Label above the admin_notes rejection reason"
+  },
+  "enrollmentRequestReviewedAt": "Reviewed",
+  "@enrollmentRequestReviewedAt": {
+    "description": "Label before the reviewed_at timestamp on a request card"
+  },
+  "liveLesson": "Live Lesson",
+  "@liveLesson": {
+    "description": "Default title for a live lesson"
+  },
+  "liveSessionReminderTitle": "Live session reminder",
+  "@liveSessionReminderTitle": {
+    "description": "Title of the local reminder notification before a live session"
+  },
+  "liveSessionReminderBody": "{title} starts in {minutes} min",
+  "@liveSessionReminderBody": {
+    "description": "Reminder notification body N minutes before a live session",
+    "placeholders": {
+      "title": {"type": "String"},
+      "minutes": {"type": "int"}
+    }
+  },
+  "liveSessionReminderNowBody": "{title} is starting now",
+  "@liveSessionReminderNowBody": {
+    "description": "Reminder notification body when a live session is starting",
+    "placeholders": {
+      "title": {"type": "String"}
+    }
+  },
+  "reminderSet": "Reminder set",
+  "@reminderSet": {
+    "description": "Snackbar shown after enabling a session reminder"
+  },
+  "reminderOn": "Reminder on",
+  "@reminderOn": {
+    "description": "Button label when a session reminder is active"
+  },
+  "endsIn": "Ends in",
+  "@endsIn": {
+    "description": "Countdown label until a live session ends"
+  },
+  "sessionNotStartedYet": "The session has not started yet",
+  "@sessionNotStartedYet": {
+    "description": "Hint shown under the countdown for an upcoming live session"
+  }
+}
+

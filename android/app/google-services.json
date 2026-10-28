@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "198986002235",
+    "project_id": "instagramm-47c12",
+    "storage_bucket": "instagramm-47c12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198986002235:android:a5213099018dfe3da1911e",
+        "android_client_info": {
+          "package_name": "com.anmka.boustlyacademy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5aEtJVVohu0pmS1A6zdW2r09V6jfngxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198986002235:android:b8647991a348e075a1911e",
+        "android_client_info": {
+          "package_name": "com.example.instagram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5aEtJVVohu0pmS1A6zdW2r09V6jfngxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
