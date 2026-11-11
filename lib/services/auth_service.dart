@@ -189,8 +189,8 @@ class AuthService {
     required bool acceptTerms,
     String role = 'student', // Default to student, can be 'instructor'
     String? studentType, // Only required for students
-    String? categoryId, // Educational stage (top-level category) — students
-    String? subcategoryId, // Grade (subcategory of [categoryId]) — students
+    String? categoryId, // Dynamic top-level category for either role
+    String? subcategoryId, // Dynamic child category for either role
   }) async {
     try {
       // Build request body
@@ -218,8 +218,9 @@ class AuthService {
         body['student_type'] = mappedStudentType;
       }
 
-      // Student's educational stage (category) + grade (subcategory).
-      if (role == 'student' && categoryId != null && categoryId.isNotEmpty) {
+      // Category hierarchy is managed by the admin dashboard and applies to
+      // both students and instructors.
+      if (categoryId != null && categoryId.isNotEmpty) {
         body['category_id'] = categoryId;
         if (subcategoryId != null && subcategoryId.isNotEmpty) {
           body['subcategory_id'] = subcategoryId;

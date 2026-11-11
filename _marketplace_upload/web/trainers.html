@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>المدربون | بوصلتي</title>
+  <style>
+    body { margin: 0; font-family: "Segoe UI", Tahoma, sans-serif; background: #FBF8F2; color: #0D2A2E; }
+    main { max-width: 1080px; margin: 0 auto; padding: 28px 16px 64px; }
+    h1 { margin: 0 0 8px; }
+    .muted { color: #4A6063; }
+    form { display: flex; gap: 8px; margin: 20px 0; }
+    input { flex: 1; padding: 12px 14px; border-radius: 12px; border: 1px solid #E5DCCB; }
+    button, .btn { background: #0E6E75; color: white; border: 0; border-radius: 12px; padding: 12px 16px; cursor: pointer; text-decoration: none; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+    a.card { display: block; background: white; border: 1px solid #E5DCCB; border-radius: 18px; padding: 16px; color: inherit; text-decoration: none; }
+    .price { color: #0E6E75; font-weight: 700; margin-top: 8px; }
+    .star { color: #865407; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>احجز جلسة مع مدرب</h1>
+    <p class="muted">اختار المدرب وشوف السعر والمواعيد. الدخول للجلسة المباشرة من تطبيق بوصلتي، من غير ما تثبّت برنامج اجتماعات.</p>
+    <form id="search">
+      <input id="q" placeholder="ابحث بالاسم أو التخصص" />
+      <button type="submit">بحث</button>
+    </form>
+    <p id="status" class="muted"></p>
+    <div id="grid" class="grid"></div>
+  </main>
+  <script>
+    const grid = document.getElementById('grid');
+    const status = document.getElementById('status');
+    async function load(q) {
+      status.textContent = 'جاري التحميل...';
+      grid.innerHTML = '';
+      const response = await fetch('/api/trainers?per_page=24&q=' + encodeURIComponent(q || ''));
+      const body = await response.json();
+      if (!response.ok || body.success === false) {
+        status.textContent = body.message || 'تعذر تحميل المدربين';
+        return;
+      }
+      const trainers = (body.data && body.data.trainers) || [];
+      const platform = (body.data && body.data.platform) || {};
+      status.textContent = (platform.trainers || trainers.length) + ' مدرب · ' + (platform.completed_sessions || 0) + ' جلسة مكتملة';
+      trainers.forEach((trainer) => {
+        const card = document.createElement('a');
+        card.className = 'card';
+        card.href = '/trainer.html?id=' + encodeURIComponent(trainer.id);
+        const price = trainer.starting_price ? ('من ' + trainer.starting_price + ' ' + (trainer.currency || '')) : '';
+        card.innerHTML = '<strong>' + (trainer.display_name || '') + '</strong><div class="muted">' + (trainer.headline || '') + '</div><div class="price">' + price + '</div><div class="star">' + (trainer.rating_average || 0) + ' ★ · ' + (trainer.completed_sessions_count || 0) + ' جلسة</div>';
+        grid.appendChild(card);
+      });
+    }
+    document.getElementById('search').addEventListener('submit', (event) => {
+      event.preventDefault();
+      load(document.getElementById('q').value);
+    });
+    load('');
+  </script>
+</body>
+</html>

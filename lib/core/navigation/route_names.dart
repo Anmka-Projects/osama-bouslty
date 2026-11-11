@@ -54,7 +54,20 @@ class RouteNames {
   static const String pdfViewer = '/pdf-viewer';
   static const String centerAttendance = '/center-attendance';
   static const String teachers = '/teachers';
+  static const String discover = '/discover';
   static const String teacherDetails = '/teacher-details';
+  static const String trainerAvailability = '/trainer-availability';
+  static const String instructorCalendar = '/instructor-calendar';
+  static const String instructorMessages = '/instructor/messages';
+  static const String trainerMatch = '/trainer-match';
+  static const String bookingCheckout = '/booking-checkout';
+  static const String myBookings = '/my-bookings';
+  static const String bookingDetails = '/booking-details';
+  static const String bookingReview = '/booking-review';
+  static const String instructorRequests = '/instructor/requests';
+  static const String instructorMarketplace = '/instructor/marketplace';
+  static const String instructorBookings = '/instructor/bookings';
   static const String chatConversations = '/chat';
+  static const String screensPreview = '/screens-preview';
   static const String chatMessages = '/chat/:conversationId';
 }

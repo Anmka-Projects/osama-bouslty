@@ -150,9 +150,23 @@ class FirebaseNotification {
   }
 
   static void _scheduleNavigation(Map<String, dynamic> data) {
+    final bookingId = data['booking_id']?.toString();
+    final deepLink = data['deep_link']?.toString() ?? data['deepLink']?.toString();
+    final resolvedBooking = (bookingId != null && bookingId.isNotEmpty)
+        ? bookingId
+        : (deepLink != null && deepLink.startsWith('booking:'))
+            ? deepLink.substring('booking:'.length).trim()
+            : null;
+    if (resolvedBooking != null && resolvedBooking.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final ctx = AppRouter.rootNavigatorKey.currentContext;
+        if (ctx == null) return;
+        GoRouter.of(ctx).push(RouteNames.bookingDetails, extra: resolvedBooking);
+      });
+      return;
+    }
     final courseId = data['course_id']?.toString() ??
         data['courseId']?.toString();
-    final deepLink = data['deep_link']?.toString();
     String? resolvedId = courseId;
     if ((resolvedId == null || resolvedId.isEmpty) &&
         deepLink != null &&

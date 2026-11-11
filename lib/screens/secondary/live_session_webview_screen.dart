@@ -7,10 +7,11 @@ import '../../l10n/app_localizations.dart';
 /// In-app WebView for live session links (Zoom, Google Meet, Teams…).
 /// Non-http(s) deep links (e.g. zoommtg://) are handed off to the system.
 class LiveSessionWebViewScreen extends StatefulWidget {
-  const LiveSessionWebViewScreen({super.key, required this.url, this.title});
+  const LiveSessionWebViewScreen({super.key, required this.url, this.title, this.stayInApp = false});
 
   final String url;
   final String? title;
+  final bool stayInApp;
 
   @override
   State<LiveSessionWebViewScreen> createState() =>
@@ -46,8 +47,7 @@ class _LiveSessionWebViewScreenState extends State<LiveSessionWebViewScreen> {
             if (uri.isScheme('http') || uri.isScheme('https')) {
               return NavigationDecision.navigate;
             }
-            // zoommtg://, tel:, mailto: and friends -> hand to the OS.
-            _openExternally(uri);
+            if (!widget.stayInApp) _openExternally(uri);
             return NavigationDecision.prevent;
           },
         ),

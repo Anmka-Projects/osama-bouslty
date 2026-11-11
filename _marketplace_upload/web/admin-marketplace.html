@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>حجوزات الجلسات | لوحة بوصلتي</title>
+  <style>
+    body { margin: 0; font-family: "Segoe UI", Tahoma, sans-serif; background: #FBF8F2; color: #0D2A2E; }
+    main { padding: 24px; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { text-align: right; padding: 10px; border-bottom: 1px solid #E5DCCB; font-size: 14px; }
+    button { margin-left: 6px; border: 0; border-radius: 8px; padding: 8px 10px; cursor: pointer; }
+    .ok { background: #0E6E75; color: white; }
+    .no { background: #AE4128; color: white; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>حجوزات الجلسات المباشرة</h1>
+    <p>اقبل إيصال الدفع أو ارفضه. شراء الكورسات القديم سليم ومش متعلق بالحجز ده.</p>
+    <p id="status"></p>
+    <table>
+      <thead>
+        <tr><th>الطالب</th><th>المدرب</th><th>الجلسة</th><th>الموعد</th><th>المبلغ</th><th>الحالة</th><th>الدفع</th><th></th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script>
+    const status = document.getElementById('status');
+    const rows = document.getElementById('rows');
+    async function load() {
+      const response = await fetch('/api/admin/marketplace/bookings?role=admin', { credentials: 'include' });
+      const body = await response.json();
+      if (!response.ok) {
+        status.textContent = body.message || 'سجل الدخول من لوحة الأدمن في نفس المتصفح ثم حدّث الصفحة.';
+        return;
+      }
+      const list = (body.data && body.data.bookings) || [];
+      status.textContent = list.length + ' حجز';
+      rows.innerHTML = '';
+      list.forEach((row) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + ((row.student_summary && row.student_summary.name) || '') + '</td><td>' + ((row.trainer_summary && row.trainer_summary.display_name) || '') + '</td><td>' + ((row.offering && row.offering.title) || '') + '</td><td>' + new Date(row.scheduled_at).toLocaleString('ar-EG') + '</td><td>' + row.amount + ' ' + row.currency + '</td><td>' + row.status + '</td><td>' + row.payment_status + '</td><td></td>';
+        if (row.payment_status === 'pending') {
+          const cell = tr.lastElementChild;
+          const ok = document.createElement('button');
+          ok.className = 'ok';
+          ok.textContent = 'قبول';
+          ok.onclick = () => decide(row.id, true);
+          const no = document.createElement('button');
+          no.className = 'no';
+          no.textContent = 'رفض';
+          no.onclick = () => decide(row.id, false);
+          cell.appendChild(ok);
+          cell.appendChild(no);
+        }
+        rows.appendChild(tr);
+      });
+    }
+    async function decide(id, approve) {
+      await fetch('/api/admin/marketplace/bookings/' + id + '/payment', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ approve })
+      });
+      load();
+    }
+    load();
+  </script>
+</body>
+</html>

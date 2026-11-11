@@ -1,0 +1,368 @@
+enum TrainerVerificationStatus {
+  draft
+  pending
+  approved
+  rejected
+  suspended
+}
+
+enum TrainerOfferingType {
+  single_session
+  package
+  course
+}
+
+enum SessionBookingStatus {
+  requested
+  pending_payment
+  confirmed
+  scheduled
+  live
+  completed
+  cancelled
+}
+
+enum SessionPaymentStatus {
+  unpaid
+  pending
+  paid
+  failed
+  refunded
+  partially_refunded
+}
+
+enum MeetingProviderKind {
+  teams
+  zoom
+  jitsi
+  custom_web
+}
+
+enum LedgerEntryType {
+  credit
+  debit
+  refund
+}
+
+enum PayoutRequestStatus {
+  pending
+  approved
+  rejected
+  paid
+}
+
+model TrainerProfile {
+  id                     String                      @id @default(uuid())
+  userId                 String                      @unique @map("user_id")
+  displayName            String                      @map("display_name") @db.VarChar(255)
+  headline               String?                     @db.VarChar(255)
+  bio                    String?                     @db.Text
+  introVideoUrl          String?                     @map("intro_video_url") @db.VarChar(500)
+  avatarUrl              String?                     @map("avatar_url") @db.VarChar(500)
+  yearsExperience        Int?                        @map("years_experience")
+  categoryId             String?                     @map("category_id")
+  subcategoryId          String?                     @map("subcategory_id")
+  languages              Json?
+  socialLinks            Json?                       @map("social_links")
+  verificationStatus     TrainerVerificationStatus   @default(approved) @map("verification_status")
+  isAcceptingBookings    Boolean                     @default(true) @map("is_accepting_bookings")
+  rejectionNote          String?                     @map("rejection_note") @db.Text
+  timezone               String                      @default("Africa/Cairo") @db.VarChar(64)
+  slotDurationMinutes    Int                         @default(60) @map("slot_duration_minutes")
+  bufferMinutes          Int                         @default(10) @map("buffer_minutes")
+  ratingAverage          Decimal                     @default(0) @map("rating_average") @db.Decimal(4, 2)
+  ratingCount            Int                         @default(0) @map("rating_count")
+  completedSessionsCount Int                         @default(0) @map("completed_sessions_count")
+  studentsCount          Int                         @default(0) @map("students_count")
+  defaultMeetingProvider MeetingProviderKind         @default(custom_web) @map("default_meeting_provider")
+  defaultJoinUrl         String?                     @map("default_join_url") @db.Text
+  createdAt              DateTime                    @default(now()) @map("created_at")
+  updatedAt              DateTime                    @updatedAt @map("updated_at")
+  user                   User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specialties            TrainerSpecialty[]
+  qualifications         TrainerQualification[]
+  offerings              TrainerOffering[]
+  availabilityRules      TrainerAvailabilityRule[]
+  availabilityExceptions TrainerAvailabilityException[]
+  bookings               SessionBooking[]
+
+  @@index([verificationStatus])
+  @@index([isAcceptingBookings])
+  @@index([categoryId])
+  @@index([subcategoryId])
+  @@map("trainer_profiles")
+}
+
+model TrainerSpecialty {
+  id        String         @id @default(uuid())
+  profileId String         @map("profile_id")
+  name      String         @db.VarChar(120)
+  profile   TrainerProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+  @@index([name])
+  @@map("trainer_specialties")
+}
+
+model TrainerQualification {
+  id        String         @id @default(uuid())
+  profileId String         @map("profile_id")
+  title     String         @db.VarChar(255)
+  issuer    String?        @db.VarChar(255)
+  year      Int?
+  profile   TrainerProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+  @@map("trainer_qualifications")
+}
+
+model TrainerOffering {
+  id              String              @id @default(uuid())
+  profileId       String              @map("profile_id")
+  type            TrainerOfferingType
+  title           String              @db.VarChar(255)
+  description     String?             @db.Text
+  durationMinutes Int                 @map("duration_minutes")
+  sessionCount    Int                 @default(1) @map("session_count")
+  price           Decimal             @db.Decimal(10, 2)
+  discountPrice   Decimal?            @map("discount_price") @db.Decimal(10, 2)
+  currency        String              @default("EGP") @db.VarChar(3)
+  isActive        Boolean             @default(true) @map("is_active")
+  courseId        String?             @map("course_id")
+  createdAt       DateTime            @default(now()) @map("created_at")
+  updatedAt       DateTime            @updatedAt @map("updated_at")
+  profile         TrainerProfile      @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  quotes          BookingQuote[]
+  bookings        SessionBooking[]
+  packages        PackagePurchase[]
+
+  @@index([profileId])
+  @@index([isActive])
+  @@map("trainer_offerings")
+}
+
+model TrainerAvailabilityRule {
+  id          String         @id @default(uuid())
+  profileId   String         @map("profile_id")
+  weekday     Int
+  startMinute Int            @map("start_minute")
+  endMinute   Int            @map("end_minute")
+  profile     TrainerProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+  @@map("trainer_availability_rules")
+}
+
+model TrainerAvailabilityException {
+  id        String         @id @default(uuid())
+  profileId String         @map("profile_id")
+  date      DateTime       @db.Date
+  isBlocked Boolean        @default(true) @map("is_blocked")
+  note      String?        @db.VarChar(255)
+  profile   TrainerProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+  @@map("trainer_availability_exceptions")
+}
+
+model BookingQuote {
+  id             String           @id @default(uuid())
+  studentId      String           @map("student_id")
+  offeringId     String           @map("offering_id")
+  startsAt       DateTime         @map("starts_at")
+  endsAt         DateTime         @map("ends_at")
+  subtotal       Decimal          @db.Decimal(10, 2)
+  discount       Decimal          @default(0) @db.Decimal(10, 2)
+  total          Decimal          @db.Decimal(10, 2)
+  currency       String           @db.VarChar(3)
+  couponCode     String?          @map("coupon_code") @db.VarChar(50)
+  expiresAt      DateTime         @map("expires_at")
+  consumedAt     DateTime?        @map("consumed_at")
+  idempotencyKey String?          @map("idempotency_key") @db.VarChar(80)
+  createdAt      DateTime         @default(now()) @map("created_at")
+  offering       TrainerOffering  @relation(fields: [offeringId], references: [id])
+
+  @@index([studentId])
+  @@index([expiresAt])
+  @@map("booking_quotes")
+}
+
+model SessionBooking {
+  id                 String                 @id @default(uuid())
+  studentId          String                 @map("student_id")
+  trainerUserId      String                 @map("trainer_user_id")
+  profileId          String                 @map("profile_id")
+  offeringId         String                 @map("offering_id")
+  packagePurchaseId  String?                @map("package_purchase_id")
+  scheduledAt        DateTime               @map("scheduled_at")
+  endsAt             DateTime               @map("ends_at")
+  status             SessionBookingStatus   @default(pending_payment)
+  paymentStatus      SessionPaymentStatus   @default(unpaid) @map("payment_status")
+  paymentMethod      String?                @map("payment_method") @db.VarChar(40)
+  priceSnapshot      Decimal                @map("price_snapshot") @db.Decimal(10, 2)
+  currency           String                 @db.VarChar(3)
+  scheduleVersion    Int                    @default(1) @map("schedule_version")
+  studentNotes       String?                @map("student_notes") @db.VarChar(1000)
+  receiptUrl         String?                @map("receipt_url") @db.VarChar(500)
+  cancelledById      String?                @map("cancelled_by_id")
+  cancellationReason String?                @map("cancellation_reason") @db.VarChar(500)
+  conversationId     String?                @map("conversation_id")
+  createdAt          DateTime               @default(now()) @map("created_at")
+  updatedAt          DateTime               @updatedAt @map("updated_at")
+  student            User                   @relation("StudentSessionBookings", fields: [studentId], references: [id])
+  trainer            User                   @relation("TrainerSessionBookings", fields: [trainerUserId], references: [id])
+  profile            TrainerProfile         @relation(fields: [profileId], references: [id])
+  offering           TrainerOffering        @relation(fields: [offeringId], references: [id])
+  packagePurchase    PackagePurchase?       @relation(fields: [packagePurchaseId], references: [id])
+  meeting            MeetingSession?
+  review             BookingReview?
+  slotLock           TrainerSlotLock?
+  auditEvents        BookingAuditEvent[]
+  ledgerEntries      TrainerEarningLedger[]
+
+  @@index([studentId])
+  @@index([trainerUserId])
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([scheduledAt])
+  @@map("session_bookings")
+}
+
+model TrainerSlotLock {
+  id            String         @id @default(uuid())
+  trainerUserId String         @map("trainer_user_id")
+  startsAt      DateTime       @map("starts_at")
+  bookingId     String         @unique @map("booking_id")
+  booking       SessionBooking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@unique([trainerUserId, startsAt])
+  @@map("trainer_slot_locks")
+}
+
+model MeetingSession {
+  id                String              @id @default(uuid())
+  bookingId         String              @unique @map("booking_id")
+  provider          MeetingProviderKind @default(custom_web)
+  providerMeetingId String?             @map("provider_meeting_id") @db.VarChar(255)
+  hostUrl           String?             @map("host_url") @db.Text
+  joinUrl           String?             @map("join_url") @db.Text
+  createdAt         DateTime            @default(now()) @map("created_at")
+  updatedAt         DateTime            @updatedAt @map("updated_at")
+  booking           SessionBooking      @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@map("meeting_sessions")
+}
+
+model JoinGrant {
+  id        String   @id @default(uuid())
+  bookingId String   @map("booking_id")
+  userId    String   @map("user_id")
+  tokenHash String   @unique @map("token_hash") @db.VarChar(128)
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([bookingId])
+  @@map("join_grants")
+}
+
+model PackagePurchase {
+  id            String           @id @default(uuid())
+  studentId     String           @map("student_id")
+  offeringId    String           @map("offering_id")
+  sessionsTotal Int              @map("sessions_total")
+  sessionsUsed  Int              @default(0) @map("sessions_used")
+  status        String           @default("active") @db.VarChar(20)
+  createdAt     DateTime         @default(now()) @map("created_at")
+  offering      TrainerOffering  @relation(fields: [offeringId], references: [id])
+  bookings      SessionBooking[]
+
+  @@index([studentId])
+  @@map("package_purchases")
+}
+
+model BookingReview {
+  id            String         @id @default(uuid())
+  bookingId     String         @unique @map("booking_id")
+  studentId     String         @map("student_id")
+  trainerUserId String         @map("trainer_user_id")
+  rating        Int
+  comment       String?        @db.VarChar(1000)
+  isHidden      Boolean        @default(false) @map("is_hidden")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  booking       SessionBooking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  student       User           @relation("BookingReviewsWritten", fields: [studentId], references: [id])
+
+  @@index([trainerUserId])
+  @@map("booking_reviews")
+}
+
+model TrainerEarningLedger {
+  id            String           @id @default(uuid())
+  trainerUserId String           @map("trainer_user_id")
+  bookingId     String?          @map("booking_id")
+  type          LedgerEntryType
+  amount        Decimal          @db.Decimal(10, 2)
+  currency      String           @db.VarChar(3)
+  note          String?          @db.VarChar(255)
+  createdAt     DateTime         @default(now()) @map("created_at")
+  trainer       User             @relation(fields: [trainerUserId], references: [id])
+  booking       SessionBooking?  @relation(fields: [bookingId], references: [id])
+
+  @@index([trainerUserId])
+  @@index([bookingId])
+  @@map("trainer_earnings_ledger")
+}
+
+model PayoutRequest {
+  id            String              @id @default(uuid())
+  trainerUserId String              @map("trainer_user_id")
+  amount        Decimal             @db.Decimal(10, 2)
+  currency      String              @db.VarChar(3)
+  status        PayoutRequestStatus @default(pending)
+  note          String?             @db.VarChar(500)
+  adminNote     String?             @map("admin_note") @db.VarChar(500)
+  createdAt     DateTime            @default(now()) @map("created_at")
+  updatedAt     DateTime            @updatedAt @map("updated_at")
+  trainer       User                @relation(fields: [trainerUserId], references: [id])
+
+  @@index([trainerUserId])
+  @@index([status])
+  @@map("payout_requests")
+}
+
+model BookingAuditEvent {
+  id        String         @id @default(uuid())
+  bookingId String         @map("booking_id")
+  actorId   String?        @map("actor_id")
+  action    String         @db.VarChar(80)
+  metadata  Json?
+  createdAt DateTime       @default(now()) @map("created_at")
+  booking   SessionBooking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  @@index([bookingId])
+  @@map("booking_audit_events")
+}
+
+model IdempotencyRecord {
+  id           String   @id @default(uuid())
+  userId       String   @map("user_id")
+  scope        String   @db.VarChar(40)
+  key          String   @db.VarChar(80)
+  responseJson String   @map("response_json") @db.LongText
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@unique([userId, scope, key])
+  @@map("idempotency_records")
+}
+
+model MarketplaceSetting {
+  id                 String  @id @default("default")
+  joinBeforeMinutes  Int     @default(15) @map("join_before_minutes")
+  joinAfterMinutes   Int     @default(15) @map("join_after_minutes")
+  cancelBeforeHours  Int     @default(12) @map("cancel_before_hours")
+  defaultCurrency    String  @default("USD") @map("default_currency") @db.VarChar(3)
+  priceOptionsUsd    String? @map("price_options_usd") @db.Text
+  paths              String? @db.Text
+
+  @@map("marketplace_settings")
+}

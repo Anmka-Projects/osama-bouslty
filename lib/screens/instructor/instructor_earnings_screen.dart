@@ -387,7 +387,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-          color: context.appTheme.card,
+              color: context.appTheme.card,
               borderRadius: BorderRadius.circular(AppRadius.card),
             ),
             child: Column(
@@ -436,7 +436,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-          color: context.appTheme.card,
+              color: context.appTheme.card,
               borderRadius: BorderRadius.circular(AppRadius.card),
             ),
             child: Column(
@@ -496,7 +496,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(AppRadius.card),
         boxShadow: [
           BoxShadow(
@@ -601,7 +601,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(AppRadius.card),
         boxShadow: [
           BoxShadow(
@@ -751,7 +751,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppColors.border.withOpacity(0.5)),
         boxShadow: [
@@ -1013,12 +1013,10 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
       icon: Icons.payments_rounded,
       accentColor: const Color(0xFF22C55E),
       summaryText: isAr
-          ? 'الإجمالي: ${totalRevenue.toInt()} ريال'
-          : 'Total: ${totalRevenue.toInt()} SAR',
+          ? 'الإجمالي: ${totalRevenue.toInt()} USD'
+          : 'Total: ${totalRevenue.toInt()} USD',
       extraContent: _buildChartDataTable(
-        items
-            .map((e) => (e.$1, '${e.$2.toInt()} ${isAr ? 'ريال' : 'SAR'}'))
-            .toList(),
+        items.map((e) => (e.$1, '${e.$2.toInt()} USD')).toList(),
         isAr ? 'الشهر' : 'Month',
         isAr ? 'المبلغ' : 'Amount',
         isAr,
@@ -1321,7 +1319,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(AppRadius.card),
         boxShadow: [
           BoxShadow(
@@ -1336,7 +1334,8 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.show_chart_rounded, color: context.appTheme.icon, size: 24),
+              Icon(Icons.show_chart_rounded,
+                  color: context.appTheme.icon, size: 24),
               const SizedBox(width: 10),
               Text(
                 isAr ? 'المبيعات الشهرية' : 'Monthly Earnings',
@@ -1518,7 +1517,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(AppRadius.card),
         border: Border.all(color: context.appTheme.icon.withOpacity(0.08)),
         boxShadow: [
@@ -1589,7 +1588,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
                     Divider(color: _theme.cardBorder),
                     const SizedBox(height: 8),
                     Text(
-                      '${total.toStringAsFixed(1)} ${isAr ? 'ريال' : 'SAR'}',
+                      '${total.toStringAsFixed(1)} USD',
                       style: GoogleFonts.readexPro(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -1637,7 +1636,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
                 ),
               ),
               Text(
-                '${value.toStringAsFixed(1)} ${Localizations.localeOf(context).languageCode == 'ar' ? 'ريال' : 'SAR'}',
+                '${value.toStringAsFixed(1)} USD',
                 style: GoogleFonts.readexPro(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -1682,8 +1681,8 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
               color: context.appTheme.icon.withOpacity(0.08),
               shape: BoxShape.circle,
             ),
-            child:
-                Icon(icon, size: 40, color: context.appTheme.icon.withOpacity(0.7)),
+            child: Icon(icon,
+                size: 40, color: context.appTheme.icon.withOpacity(0.7)),
           ),
           const SizedBox(height: 20),
           Text(
@@ -1736,23 +1735,23 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
     final insights = <String>[];
     if (totalSales > 0) {
       insights.add(isAr
-          ? '• إجمالي المبيعات: ${totalSales.toStringAsFixed(1)} ريال'
-          : '• Total sales: ${totalSales.toStringAsFixed(1)} SAR');
+          ? '• إجمالي المبيعات: ${totalSales.toStringAsFixed(1)} USD'
+          : '• Total sales: ${totalSales.toStringAsFixed(1)} USD');
     }
     if (totalStudents > 0) {
       insights.add(isAr
-          ? '• متوسط قيمة الطالب: ${avgPerStudent.toStringAsFixed(1)} ريال'
-          : '• Avg per student: ${avgPerStudent.toStringAsFixed(1)} SAR');
+          ? '• متوسط قيمة الطالب: ${avgPerStudent.toStringAsFixed(1)} USD'
+          : '• Avg per student: ${avgPerStudent.toStringAsFixed(1)} USD');
     }
     if (coursesCount > 0 && totalSales > 0) {
       insights.add(isAr
-          ? '• متوسط دخل الدورة: ${avgPerCourse.toStringAsFixed(1)} ريال'
-          : '• Avg per course: ${avgPerCourse.toStringAsFixed(1)} SAR');
+          ? '• متوسط دخل الدورة: ${avgPerCourse.toStringAsFixed(1)} USD'
+          : '• Avg per course: ${avgPerCourse.toStringAsFixed(1)} USD');
     }
     if (estimatedTotal > 0) {
       insights.add(isAr
-          ? '• المرتب التقديري (أساسي + عمولة): ${estimatedTotal.toStringAsFixed(1)} ريال'
-          : '• Est. salary (base + commission): ${estimatedTotal.toStringAsFixed(1)} SAR');
+          ? '• المرتب التقديري (أساسي + عمولة): ${estimatedTotal.toStringAsFixed(1)} USD'
+          : '• Est. salary (base + commission): ${estimatedTotal.toStringAsFixed(1)} USD');
     }
 
     if (insights.isEmpty) {
@@ -1780,7 +1779,8 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
         children: [
           Row(
             children: [
-              Icon(Icons.insights_rounded, color: context.appTheme.icon, size: 24),
+              Icon(Icons.insights_rounded,
+                  color: context.appTheme.icon, size: 24),
               const SizedBox(width: 10),
               Text(
                 isAr ? 'تحليل الأرباح' : 'Earnings Analysis',
@@ -1822,7 +1822,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(AppRadius.card),
         border: Border.all(color: context.appTheme.icon.withOpacity(0.08)),
         boxShadow: [
@@ -2159,10 +2159,10 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
                   width: double.infinity,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-          color: context.appTheme.card,
+                    color: context.appTheme.card,
                     borderRadius: BorderRadius.circular(16),
-                    border:
-                        Border.all(color: context.appTheme.icon.withOpacity(0.2)),
+                    border: Border.all(
+                        color: context.appTheme.icon.withOpacity(0.2)),
                     boxShadow: [
                       BoxShadow(
                         color: context.appTheme.icon.withOpacity(0.06),
@@ -2182,7 +2182,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        '${teacherShare.toStringAsFixed(2)} ${isAr ? 'ريال' : 'SAR'}',
+                        '${teacherShare.toStringAsFixed(2)} USD',
                         style: GoogleFonts.readexPro(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
@@ -2276,7 +2276,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
                       margin: const EdgeInsets.only(bottom: 10),
                       padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
-          color: context.appTheme.card,
+                        color: context.appTheme.card,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: context.appTheme.icon.withOpacity(0.1),
@@ -2327,7 +2327,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
                             ),
                           ),
                           Text(
-                            '${revVal.toStringAsFixed(2)} ${isAr ? 'ريال' : 'SAR'}',
+                            '${revVal.toStringAsFixed(2)} USD',
                             style: GoogleFonts.readexPro(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -2409,7 +2409,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
   Widget _buildReportsCard(bool isAr) {
     return Container(
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(AppRadius.card),
         border: Border.all(color: context.appTheme.icon.withOpacity(0.08)),
         boxShadow: [
@@ -2706,7 +2706,7 @@ class _InstructorEarningsScreenState extends State<InstructorEarningsScreen> {
         maxChildSize: 0.92,
         builder: (_, controller) => Container(
           decoration: BoxDecoration(
-          color: context.appTheme.card,
+            color: context.appTheme.card,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
             boxShadow: [
               BoxShadow(

@@ -803,7 +803,7 @@ class _InstructorHomeScreenState extends State<InstructorHomeScreen>
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(AppRadius.card),
         boxShadow: [
           BoxShadow(
@@ -1216,7 +1216,7 @@ class _InstructorHomeScreenState extends State<InstructorHomeScreen>
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: AppColors.border.withOpacity(0.6)),
         boxShadow: [
@@ -1297,7 +1297,7 @@ class _InstructorHomeScreenState extends State<InstructorHomeScreen>
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                '${e.amount} ${isAr ? 'ريال' : 'SAR'}',
+                '${e.amount} USD',
                 style: GoogleFonts.readexPro(
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
@@ -1347,7 +1347,7 @@ class _InstructorHomeScreenState extends State<InstructorHomeScreen>
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
       decoration: BoxDecoration(
-          color: context.appTheme.card,
+        color: context.appTheme.card,
         borderRadius: BorderRadius.circular(AppRadius.card),
         boxShadow: [
           BoxShadow(
@@ -1409,8 +1409,8 @@ class _InstructorHomeScreenState extends State<InstructorHomeScreen>
             icon: const Icon(Icons.add_rounded, size: 20),
             label: Text(
               isAr ? 'عرض دوراتي' : 'View my courses',
-              style:
-                  GoogleFonts.readexPro(fontSize: 14, fontWeight: FontWeight.w600),
+              style: GoogleFonts.readexPro(
+                  fontSize: 14, fontWeight: FontWeight.w600),
             ),
           ),
         ],
@@ -1465,7 +1465,7 @@ class _InstructorHomeScreenState extends State<InstructorHomeScreen>
           child: Container(
             margin: const EdgeInsets.only(bottom: 14),
             decoration: BoxDecoration(
-          color: context.appTheme.card,
+              color: context.appTheme.card,
               borderRadius: BorderRadius.circular(AppRadius.card),
               boxShadow: [
                 BoxShadow(
@@ -1569,7 +1569,7 @@ class _InstructorHomeScreenState extends State<InstructorHomeScreen>
                                 _buildStatChip(
                                   context,
                                   Icons.payments_rounded,
-                                  '${price.toInt()} ${isAr ? 'ريال' : 'SAR'}',
+                                  '${price.toInt()} USD',
                                   AppColors.primary,
                                   isAr,
                                 ),
@@ -1809,7 +1809,7 @@ class _InstructorHomeScreenState extends State<InstructorHomeScreen>
                 return Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-          color: context.appTheme.card,
+                    color: context.appTheme.card,
                     borderRadius: BorderRadius.circular(AppRadius.card),
                   ),
                   child: Column(
@@ -1863,7 +1863,7 @@ class _InstructorHomeScreenState extends State<InstructorHomeScreen>
                 margin: const EdgeInsets.only(bottom: 14),
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-          color: context.appTheme.card,
+                  color: context.appTheme.card,
                   borderRadius: BorderRadius.circular(AppRadius.card),
                 ),
                 child: Row(

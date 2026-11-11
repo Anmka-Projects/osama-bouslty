@@ -87,9 +87,17 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.input,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        floatingLabelBehavior: FloatingLabelBehavior.auto,
+        alignLabelWithHint: true,
         border: OutlineInputBorder(
           borderRadius: AppRadius.inputBorderRadius,
-          borderSide: BorderSide.none,
+          borderSide: const BorderSide(color: AppColors.line),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: AppRadius.inputBorderRadius,
+          borderSide: const BorderSide(color: AppColors.line),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: AppRadius.inputBorderRadius,
@@ -183,9 +191,17 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.darkSurfaceRaised,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        floatingLabelBehavior: FloatingLabelBehavior.auto,
+        alignLabelWithHint: true,
         border: OutlineInputBorder(
           borderRadius: AppRadius.inputBorderRadius,
-          borderSide: BorderSide.none,
+          borderSide: const BorderSide(color: AppColors.darkLine),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: AppRadius.inputBorderRadius,
+          borderSide: const BorderSide(color: AppColors.darkLine),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: AppRadius.inputBorderRadius,

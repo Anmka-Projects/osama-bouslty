@@ -38,6 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _showPasswordConfirmation = false;
   bool _isLoading = false;
   bool _acceptTerms = false;
+  String _accountRole = 'student';
   // Student type selection is temporarily disabled in UI.
   final String _defaultStudentType = 'online';
 
@@ -173,7 +174,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         password: _passwordController.text,
         passwordConfirmation: _passwordConfirmationController.text,
         acceptTerms: _acceptTerms,
-        studentType: _defaultStudentType,
+        role: _accountRole,
+        studentType: _accountRole == 'student' ? _defaultStudentType : null,
         categoryId: _selectedCategoryId,
         subcategoryId: _selectedSubcategoryId,
       );
@@ -296,6 +298,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Text('نوع الحساب',
+                                style: GoogleFonts.readexPro(
+                                    fontWeight: FontWeight.w700)),
+                            const SizedBox(height: 8),
+                            SegmentedButton<String>(
+                              segments: const [
+                                ButtonSegment(
+                                    value: 'student',
+                                    label: Text('طالب'),
+                                    icon: Icon(Icons.school_outlined)),
+                                ButtonSegment(
+                                    value: 'instructor',
+                                    label: Text('مدرس'),
+                                    icon: Icon(Icons.co_present_outlined)),
+                              ],
+                              selected: {_accountRole},
+                              onSelectionChanged: (value) =>
+                                  setState(() => _accountRole = value.first),
+                            ),
+                            if (_accountRole == 'instructor') ...[
+                              const SizedBox(height: 8),
+                              Text(
+                                'بعد التسجيل هتكمل الملف والفيديو التعريفي والباقات، ومش هيظهروا للطلاب غير بعد موافقة الأدمن.',
+                                style: GoogleFonts.readexPro(
+                                    fontSize: 12, color: AppColors.inkMuted),
+                              ),
+                            ],
+                            const SizedBox(height: 16),
                             // Name Field
                             _buildLabel(AppLocalizations.of(context)!.fullName),
                             const SizedBox(height: 8),
@@ -360,38 +390,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ),
                               )
                             else if (_stageCategories.isNotEmpty) ...[
-                              _buildLabel(AppLocalizations.of(context)!
-                                  .educationalStage),
+                              _buildLabel(_accountRole == 'student'
+                                  ? AppLocalizations.of(context)!
+                                      .educationalStage
+                                  : 'المجال الرئيسي'),
                               const SizedBox(height: 8),
                               _buildCategoryDropdown(
                                 value: _selectedCategoryId,
-                                hint: AppLocalizations.of(context)!
-                                    .selectEducationalStage,
+                                hint: _accountRole == 'student'
+                                    ? AppLocalizations.of(context)!
+                                        .selectEducationalStage
+                                    : 'اختر المجال الرئيسي',
                                 icon: Icons.school_outlined,
                                 options: _stageCategories,
                                 onChanged: (v) => setState(() {
                                   _selectedCategoryId = v;
                                   _selectedSubcategoryId = null;
                                 }),
-                                validatorMessage: AppLocalizations.of(context)!
-                                    .selectEducationalStage,
+                                validatorMessage: _accountRole == 'student'
+                                    ? AppLocalizations.of(context)!
+                                        .selectEducationalStage
+                                    : 'اختر المجال الرئيسي',
                               ),
                               const SizedBox(height: 16),
                               if (_gradeOptions.isNotEmpty) ...[
-                                _buildLabel(
-                                    AppLocalizations.of(context)!.grade),
+                                _buildLabel(_accountRole == 'student'
+                                    ? AppLocalizations.of(context)!.grade
+                                    : 'التخصص الفرعي'),
                                 const SizedBox(height: 8),
                                 _buildCategoryDropdown(
                                   resetKey: ValueKey(_selectedCategoryId),
                                   value: _selectedSubcategoryId,
-                                  hint:
-                                      AppLocalizations.of(context)!.selectGrade,
+                                  hint: _accountRole == 'student'
+                                      ? AppLocalizations.of(context)!
+                                          .selectGrade
+                                      : 'اختر التخصص الفرعي',
                                   icon: Icons.grade_outlined,
                                   options: _gradeOptions,
                                   onChanged: (v) => setState(
                                       () => _selectedSubcategoryId = v),
-                                  validatorMessage:
-                                      AppLocalizations.of(context)!.selectGrade,
+                                  validatorMessage: _accountRole == 'student'
+                                      ? AppLocalizations.of(context)!
+                                          .selectGrade
+                                      : 'اختر التخصص الفرعي',
                                 ),
                                 const SizedBox(height: 16),
                               ],

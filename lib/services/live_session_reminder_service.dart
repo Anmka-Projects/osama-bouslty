@@ -72,6 +72,7 @@ class LiveSessionReminderService {
     required DateTime start,
     required String notificationTitle,
     required String Function(int minutesBefore) bodyBuilder,
+    Map<String, dynamic>? extra,
   }) async {
     if (sessionId.isEmpty) return;
     await ensureInitialized();
@@ -80,9 +81,10 @@ class LiveSessionReminderService {
     final mode = await _scheduleMode();
     final now = DateTime.now();
     final payload = jsonEncode(<String, dynamic>{
-      'type': 'live_session',
+      'type': extra?['type'] ?? 'live_session',
       'course_id': courseId,
       if (lessonId != null && lessonId.isNotEmpty) 'lesson_id': lessonId,
+      if (extra != null) ...extra,
     });
 
     const details = NotificationDetails(

@@ -10,6 +10,27 @@ class UploadService {
   UploadService._();
   static final UploadService instance = UploadService._();
 
+  /// Upload a chat attachment (image, video, or audio) through the generic endpoint.
+  Future<String> uploadChatAttachment(File file) async {
+    try {
+      final response = await ApiClient.instance.postMultipart(
+        ApiEndpoints.upload,
+        fields: {'type': 'file'},
+        files: {'file': file},
+        requireAuth: true,
+      );
+      final url = response['url']?.toString() ??
+          (response['data'] is Map
+              ? (response['data'] as Map)['url']?.toString()
+              : null);
+      if (url != null && url.isNotEmpty) return url;
+      throw Exception(response['message'] ?? 'Upload failed');
+    } catch (e) {
+      if (kDebugMode) print('❌ UploadService.uploadChatAttachment: $e');
+      rethrow;
+    }
+  }
+
   /// Upload an image. Returns URL path (e.g. /uploads/images/xxx.jpg) for use as thumbnail.
   Future<String> uploadImage(File file) async {
     try {
@@ -31,6 +52,31 @@ class UploadService {
     } catch (e) {
       if (kDebugMode) {
         print('❌ UploadService.uploadImage: $e');
+      }
+      rethrow;
+    }
+  }
+
+  /// Upload a video file. Returns URL path for use as intro/lesson video.
+  Future<String> uploadVideo(File file) async {
+    try {
+      final response = await ApiClient.instance.postMultipart(
+        ApiEndpoints.upload,
+        fields: {'type': 'file'},
+        files: {'file': file},
+        requireAuth: true,
+      );
+      final url = response['url']?.toString() ??
+          (response['data'] is Map
+              ? (response['data'] as Map)['url']?.toString()
+              : null);
+      if (url != null && url.isNotEmpty) {
+        return url;
+      }
+      throw Exception(response['message'] ?? 'Upload failed');
+    } catch (e) {
+      if (kDebugMode) {
+        print('❌ UploadService.uploadVideo: $e');
       }
       rethrow;
     }

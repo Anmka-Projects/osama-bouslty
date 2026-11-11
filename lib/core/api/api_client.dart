@@ -68,6 +68,13 @@ class ApiClient {
     if (lower.endsWith('.mp4')) return MediaType('video', 'mp4');
     if (lower.endsWith('.webm')) return MediaType('video', 'webm');
     if (lower.endsWith('.mov')) return MediaType('video', 'quicktime');
+    if (lower.endsWith('.mp3')) return MediaType('audio', 'mpeg');
+    if (lower.endsWith('.m4a')) return MediaType('audio', 'mp4');
+    if (lower.endsWith('.aac')) return MediaType('audio', 'aac');
+    if (lower.endsWith('.wav')) return MediaType('audio', 'wav');
+    if (lower.endsWith('.ogg') || lower.endsWith('.oga')) {
+      return MediaType('audio', 'ogg');
+    }
     if (lower.endsWith('.pdf')) return MediaType('application', 'pdf');
     if (lower.endsWith('.doc')) return MediaType('application', 'msword');
     if (lower.endsWith('.docx')) {
@@ -456,6 +463,9 @@ class ApiClient {
       if (kDebugMode) {
         print('❌ Avatar Upload Error: $e');
       }
+      // Preserve API validation/server messages. Wrapping ApiException here
+      // made every rejected upload look like a connectivity failure.
+      if (e is ApiException) rethrow;
       throw ApiException('Network error: ${e.toString()}');
     }
   }
@@ -525,7 +535,8 @@ class ApiClient {
           final t = _httpHtmlPageTitle(response.body);
           if (t != null) print('   <title>: $t');
         } else {
-          print('❌ Error Response Body: ${_debugErrorBodyPreview(response.body)}');
+          print(
+              '❌ Error Response Body: ${_debugErrorBodyPreview(response.body)}');
         }
       }
 

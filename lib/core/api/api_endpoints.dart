@@ -9,7 +9,9 @@ class ApiEndpoints {
 
   /// Helper method to convert relative image path to full URL
   static String getImageUrl(String? imagePath) {
-    if (imagePath == null || imagePath.isEmpty) {
+    if (imagePath == null ||
+        imagePath.isEmpty ||
+        imagePath.contains('default_avatar')) {
       return '';
     }
     // If already a full URL, return as is
@@ -263,4 +265,32 @@ class ApiEndpoints {
       '$baseUrl/chat/conversations/$conversationId/messages';
   static String chatMessageRead(String messageId) =>
       '$baseUrl/chat/messages/$messageId/read';
+
+  // Trainer marketplace — docs/BACKEND_TRAINER_MARKETPLACE_SPEC.md
+  static String get trainers => '$baseUrl/trainers';
+  static String trainer(String id) => '$baseUrl/trainers/$id';
+  static String trainerAvailability(String id) =>
+      '$baseUrl/trainers/$id/availability';
+  static String get paths => '$baseUrl/paths';
+  static String trainerReviews(String id) => '$baseUrl/trainers/$id/reviews';
+  static String get bookingQuotes => '$baseUrl/booking-quotes';
+  static String get bookings => '$baseUrl/bookings';
+  static String booking(String id) => '$baseUrl/bookings/$id';
+  static String bookingJoin(String id) => '$baseUrl/bookings/$id/join';
+  static String bookingCancel(String id) => '$baseUrl/bookings/$id/cancel';
+  static String bookingReschedule(String id) =>
+      '$baseUrl/bookings/$id/reschedule';
+  static String instructorBookingRespond(String id) =>
+      '$baseUrl/instructor/bookings/$id/respond';
+  static String bookingReview(String id) => '$baseUrl/bookings/$id/review';
+  static String bookingReceipt(String id) => '$baseUrl/bookings/$id/receipt';
+  static String get instructorTrainerProfile =>
+      '$baseUrl/instructor/trainer-profile';
+  static String get instructorAvailability =>
+      '$baseUrl/instructor/availability';
+  static String instructorBookingMeeting(String id) =>
+      '$baseUrl/instructor/bookings/$id/meeting';
+  static String get instructorMarketplaceEarnings =>
+      '$baseUrl/instructor/earnings';
+  static String get instructorPayouts => '$baseUrl/instructor/payouts';
 }

@@ -4,14 +4,15 @@ import '../../screens/startup/splash_screen.dart';
 import '../../screens/auth/login_screen.dart';
 import '../../screens/auth/register_screen.dart';
 import '../../screens/auth/forgot_password_screen.dart';
-import '../../screens/student/home_screen.dart';
+import '../../screens/student/discover_screen.dart';
 import '../../screens/student/courses_screen.dart';
 import '../../screens/student/progress_screen.dart';
 import '../../screens/student/student_dashboard_screen.dart';
-import '../../screens/instructor/instructor_home_screen.dart';
+import '../../screens/roles/instructor_role_home.dart';
+import '../../screens/roles/instructor_requests_screen.dart';
 import '../../screens/instructor/instructor_courses_screen.dart';
-import '../../screens/instructor/instructor_earnings_screen.dart';
-import '../../screens/instructor/instructor_profile_screen.dart';
+import '../../screens/roles/instructor_account_screen.dart';
+import '../../screens/roles/instructor_earnings_tab_screen.dart';
 import '../../screens/instructor/instructor_create_course_screen.dart';
 import '../../screens/instructor/instructor_course_details_screen.dart';
 import '../../screens/instructor/instructor_session_details_screen.dart';
@@ -40,6 +41,13 @@ import '../../screens/secondary/pdf_viewer_screen.dart';
 import '../../screens/secondary/center_attendance_screen.dart';
 import '../../screens/secondary/teachers_screen.dart';
 import '../../screens/secondary/teacher_details_screen.dart';
+import '../../screens/roles/instructor_calendar_screen.dart';
+import '../../screens/roles/instructor_messages_screen.dart';
+import '../../screens/secondary/trainer_availability_screen.dart';
+import '../../screens/secondary/booking_checkout_screen.dart';
+import '../../screens/secondary/booking_details_screen.dart';
+import '../../screens/instructor/instructor_marketplace_screen.dart';
+import '../../screens/dev/screens_preview_screen.dart';
 import '../../screens/secondary/chat_conversations_screen.dart';
 import '../../screens/secondary/chat_messages_screen.dart';
 import 'route_names.dart';
@@ -91,7 +99,14 @@ class AppRouter {
         path: RouteNames.instructorHome,
         pageBuilder: (context, state) => _buildPageWithTransition(
           key: state.pageKey,
-          child: const InstructorHomeScreen(),
+          child: const InstructorRoleHome(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.instructorRequests,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: const InstructorRequestsScreen(),
         ),
       ),
       GoRoute(
@@ -112,14 +127,14 @@ class AppRouter {
         path: RouteNames.instructorEarnings,
         pageBuilder: (context, state) => _buildPageWithTransition(
           key: state.pageKey,
-          child: const InstructorEarningsScreen(),
+          child: const InstructorEarningsTabScreen(),
         ),
       ),
       GoRoute(
         path: RouteNames.instructorProfile,
         pageBuilder: (context, state) => _buildPageWithTransition(
           key: state.pageKey,
-          child: const InstructorProfileScreen(),
+          child: const InstructorAccountScreen(),
         ),
       ),
       GoRoute(
@@ -135,7 +150,7 @@ class AppRouter {
         path: RouteNames.home,
         pageBuilder: (context, state) => _buildPageWithTransition(
           key: state.pageKey,
-          child: const HomeScreen(),
+          child: const DiscoverScreen(),
         ),
       ),
       GoRoute(
@@ -196,14 +211,48 @@ class AppRouter {
         pageBuilder: (context, state) {
           final extra = state.extra;
           List<Map<String, dynamic>>? teachers;
+          String? query;
+          String? categoryId;
+          String? subcategoryId;
+          String? subjectId;
+          String? filterLabel;
+          var availableOnly = false;
           if (extra is List) {
             teachers = extra.cast<Map<String, dynamic>>();
+          } else if (extra is Map) {
+            final m = Map<String, dynamic>.from(extra);
+            if (m['teachers'] is List) {
+              teachers = (m['teachers'] as List)
+                  .whereType<Map>()
+                  .map((e) => Map<String, dynamic>.from(e))
+                  .toList();
+            }
+            query = m['query']?.toString();
+            categoryId = m['categoryId']?.toString();
+            subcategoryId = m['subcategoryId']?.toString();
+            subjectId = m['subjectId']?.toString();
+            filterLabel = m['filterLabel']?.toString();
+            availableOnly = m['availableOnly'] == true;
           }
           return _buildPageWithTransition(
             key: state.pageKey,
-            child: TeachersScreen(teachers: teachers),
+            child: TeachersScreen(
+                teachers: teachers,
+                query: query,
+                availableOnly: availableOnly,
+                categoryId: categoryId,
+                subcategoryId: subcategoryId,
+                subjectId: subjectId,
+                filterLabel: filterLabel),
           );
         },
+      ),
+      GoRoute(
+        path: RouteNames.discover,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: const DiscoverScreen(),
+        ),
       ),
 
       // Secondary screens
@@ -260,6 +309,101 @@ class AppRouter {
           child: TeacherDetailsScreen(
             teacher: state.extra as Map<String, dynamic>?,
           ),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.trainerAvailability,
+        pageBuilder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>? ?? {};
+          return _buildPageWithTransition(
+            key: state.pageKey,
+            child: TrainerAvailabilityScreen(
+              trainerId: extra['trainerId']?.toString() ?? '',
+              trainerName: extra['trainerName']?.toString() ?? '',
+              offering:
+                  Map<String, dynamic>.from(extra['offering'] as Map? ?? {}),
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: RouteNames.instructorMessages,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: const InstructorMessagesScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.instructorCalendar,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: const InstructorCalendarScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.trainerMatch,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: const TrainerMatchScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.bookingCheckout,
+        pageBuilder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>? ?? {};
+          return _buildPageWithTransition(
+            key: state.pageKey,
+            child: BookingCheckoutScreen(
+              trainerId: extra['trainerId']?.toString() ?? '',
+              offering:
+                  Map<String, dynamic>.from(extra['offering'] as Map? ?? {}),
+              slotId: extra['slotId']?.toString() ?? '',
+              startsAtIso: extra['startsAt']?.toString() ?? '',
+            ),
+          );
+        },
+      ),
+      GoRoute(
+        path: RouteNames.myBookings,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: const MyBookingsScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.instructorBookings,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: const MyBookingsScreen(asInstructor: true),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.bookingDetails,
+        pageBuilder: (context, state) {
+          final extra = state.extra;
+          final id = extra is Map
+              ? extra['id']?.toString() ?? ''
+              : extra?.toString() ?? '';
+          final instructor = extra is Map && extra['instructor'] == true;
+          return _buildPageWithTransition(
+            key: state.pageKey,
+            child:
+                BookingDetailsScreen(bookingId: id, asInstructor: instructor),
+          );
+        },
+      ),
+      GoRoute(
+        path: RouteNames.bookingReview,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: BookingReviewScreen(bookingId: state.extra?.toString() ?? ''),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.instructorMarketplace,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: const InstructorMarketplaceScreen(),
         ),
       ),
       GoRoute(
@@ -498,6 +642,13 @@ class AppRouter {
         pageBuilder: (context, state) => _buildPageWithTransition(
           key: state.pageKey,
           child: const CenterAttendanceScreen(),
+        ),
+      ),
+      GoRoute(
+        path: RouteNames.screensPreview,
+        pageBuilder: (context, state) => _buildPageWithTransition(
+          key: state.pageKey,
+          child: const ScreensPreviewScreen(),
         ),
       ),
       GoRoute(

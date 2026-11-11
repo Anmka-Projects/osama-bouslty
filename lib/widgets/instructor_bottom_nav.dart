@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../core/design/app_colors.dart';
 import '../core/navigation/route_names.dart';
-import '../core/localization/localization_helper.dart';
 /// Bottom navigation for instructor flow — matches student [BottomNav] theming.
 class InstructorBottomNav extends StatelessWidget {
   final String activeTab;
@@ -103,97 +102,46 @@ class InstructorBottomNav extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         _NavItem(
-          icon: Icons.dashboard_rounded,
-          label: context.l10n.home,
+          icon: Icons.home_rounded,
+          label: 'الرئيسية',
           id: 'home',
           activeTab: activeTab,
           isLight: isLight,
           onTap: () => context.go(RouteNames.instructorHome),
         ),
         _NavItem(
-          icon: Icons.menu_book_rounded,
-          label: context.l10n.myCourses,
-          id: 'courses',
+          icon: Icons.inbox_rounded,
+          label: 'الطلبات',
+          id: 'requests',
           activeTab: activeTab,
           isLight: isLight,
-          onTap: () => context.go(RouteNames.instructorCourses),
-        ),
-        _CenterNavItem(
-          activeTab: activeTab,
-          onTap: () => context.go(RouteNames.instructorCreateCourse),
+          onTap: () => context.go(RouteNames.instructorRequests),
         ),
         _NavItem(
-          icon: Icons.payments_rounded,
-          label: 'Earnings',
-          id: 'earnings',
+          icon: Icons.calendar_month_rounded,
+          label: 'الجدول',
+          id: 'calendar',
           activeTab: activeTab,
           isLight: isLight,
-          onTap: () => context.go(RouteNames.instructorEarnings),
+          onTap: () => context.go(RouteNames.instructorMarketplace),
+        ),
+        _NavItem(
+          icon: Icons.chat_bubble_rounded,
+          label: 'الرسائل',
+          id: 'chat',
+          activeTab: activeTab,
+          isLight: isLight,
+          onTap: () => context.push(RouteNames.chatConversations),
         ),
         _NavItem(
           icon: Icons.person_rounded,
-          label: context.l10n.myAccount,
+          label: 'حسابي',
           id: 'profile',
           activeTab: activeTab,
           isLight: isLight,
           onTap: () => context.go(RouteNames.instructorProfile),
         ),
       ],
-    );
-  }
-}
-
-class _CenterNavItem extends StatelessWidget {
-  final String activeTab;
-  final VoidCallback onTap;
-
-  const _CenterNavItem({
-    required this.activeTab,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isActive = activeTab == 'create';
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 56,
-        height: 56,
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: AppColors.headerGradient2,
-          ),
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.navyDeep.withValues(alpha: 0.35),
-              blurRadius: 16,
-              offset: const Offset(0, 6),
-            ),
-          ],
-        ),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: isActive
-                  ? AppColors.brandWhite.withValues(alpha: 0.5)
-                  : Colors.transparent,
-              width: 3,
-            ),
-          ),
-          child: const Icon(
-            Icons.add_rounded,
-            color: AppColors.brandWhite,
-            size: 28,
-          ),
-        ),
-      ),
     );
   }
 }

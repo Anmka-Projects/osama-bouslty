@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../core/design/app_colors.dart';
 import '../../core/design/app_theme_extension.dart';
-import '../../core/design/app_theme_context.dart';
 import '../../core/design/app_radius.dart';
 import '../../core/navigation/route_names.dart';
 import '../../core/api/api_endpoints.dart';
@@ -22,7 +21,6 @@ import '../../services/profile_service.dart';
 import '../../services/notifications_service.dart';
 import '../../services/teachers_service.dart';
 import '../../l10n/app_localizations.dart';
-import '../../data/sample_teachers.dart';
 
 /// Home Screen — promo slider, stats, teachers, course discovery.
 class HomeScreen extends StatefulWidget {
@@ -150,8 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
           teachers = List<Map<String, dynamic>>.from(data);
         }
       } catch (e) {
-        // Fallback to sample teachers if API fails
-        teachers = List<Map<String, dynamic>>.from(kSampleTeachers);
+        teachers = <Map<String, dynamic>>[];
       }
 
       if (!mounted) return;

@@ -8,8 +8,9 @@ import '../../core/design/app_colors.dart';
 import '../../core/design/app_radius.dart';
 import '../../core/navigation/route_names.dart';
 import '../../core/api/api_endpoints.dart';
-import '../../widgets/bottom_nav.dart';
+import '../../widgets/student_bottom_nav.dart';
 import '../../services/auth_service.dart';
+import '../../services/courses_service.dart';
 import '../../services/profile_service.dart';
 import '../../l10n/app_localizations.dart';
 import '../../core/design/app_theme_context.dart';
@@ -30,6 +31,34 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
   bool _isLoading = true;
   Map<String, dynamic>? _profile;
   Map<String, dynamic>? _statistics;
+  String _tab = 'account';
+  bool _coursesLoading = false;
+  List<Map<String, dynamic>> _myCourses = [];
+
+  Future<void> _loadCourses() async {
+    if (_coursesLoading || _myCourses.isNotEmpty) return;
+    setState(() => _coursesLoading = true);
+    try {
+      final res = await CoursesService.instance.getEnrollments(
+          status: 'all', page: 1, perPage: 20);
+      final raw = res['data'];
+      final list = raw is List
+          ? raw
+          : (raw is Map
+              ? (raw['enrollments'] ?? raw['items'] ?? const [])
+              : const []);
+      if (!mounted) return;
+      setState(() {
+        _myCourses = list
+            .whereType<Map>()
+            .map((e) => Map<String, dynamic>.from(e))
+            .toList();
+        _coursesLoading = false;
+      });
+    } catch (_) {
+      if (mounted) setState(() => _coursesLoading = false);
+    }
+  }
 
   @override
   void initState() {
@@ -410,6 +439,13 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
         'showFor': ['offline'],
       },
       {
+        'icon': Icons.event_available_rounded,
+        'label': 'حجوزاتي',
+        'subtitle': 'جلساتك المباشرة مع المدربين',
+        'onTap': () => context.push(RouteNames.myBookings),
+        'showFor': ['online', 'offline'],
+      },
+      {
         'icon': Icons.chat_bubble_rounded,
         'label': 'Chat',
         'subtitle': 'Message teachers',
@@ -435,12 +471,28 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
 
     return Scaffold(
       backgroundColor: context.appTheme.scaffoldBackground,
-      body: Stack(
+      body: Column(
         children: [
-          Column(
-            children: [
-              // Header
-              _buildHeader(context, enrolledCourses, totalHours),
+          // Header
+          _buildHeader(context, enrolledCourses, totalHours),
+
+              // Tabs: حسابي | الدورات
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: AppColors.primarySoft,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      _tabItem('حسابي', 'account'),
+                      _tabItem('الدورات', 'courses'),
+                    ],
+                  ),
+                ),
+              ),
 
               // Content
               Expanded(
@@ -450,8 +502,10 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
                           color: _theme.icon,
                         ),
                       )
-                    : SingleChildScrollView(
-                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 140),
+                    : _tab == 'courses'
+                        ? _coursesTab()
+                        : SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
                         physics: const BouncingScrollPhysics(),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -544,15 +598,163 @@ class _StudentDashboardScreenState extends State<StudentDashboardScreen> {
                         ),
                       ),
               ),
-            ],
-          ),
 
           // Bottom Navigation
-          const BottomNav(activeTab: 'dashboard'),
+          const StudentBottomNav(activeTab: 'account'),
         ],
       ),
     );
   }
+
+  Widget _tabItem(String label, String value) {
+    final active = _tab == value;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          setState(() => _tab = value);
+          if (value == 'courses') _loadCourses();
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            color:
+                active ? AppColors.brandTeal : Colors.transparent,
+            borderRadius: BorderRadius.circular(9),
+          ),
+          child: Text(label,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.readexPro(
+                  fontSize: 13.5,
+                  fontWeight: FontWeight.w800,
+                  color: active
+                      ? Colors.white
+                      : AppColors.inkMuted)),
+        ),
+      ),
+    );
+  }
+
+  /// "الدورات" tab — student's enrolled courses from the API.
+  /// Ready for admin-added courses; shows real enrollments only.
+  Widget _coursesTab() {
+    if (_coursesLoading && _myCourses.isEmpty) {
+      return const Center(
+          child: CircularProgressIndicator(strokeWidth: 2));
+    }
+    if (_myCourses.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.menu_book_outlined,
+                size: 52,
+                color: AppColors.inkSubtle
+                    .withValues(alpha: 0.4)),
+            const SizedBox(height: 12),
+            Text('لا توجد دورات بعد',
+                style: GoogleFonts.readexPro(
+                    fontSize: 15, color: AppColors.inkMuted)),
+            const SizedBox(height: 4),
+            Text('هتظهر هنا لما تسجّل في دورة',
+                style: GoogleFonts.readexPro(
+                    fontSize: 12, color: AppColors.inkMuted)),
+          ],
+        ),
+      );
+    }
+    return ListView.builder(
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+      itemCount: _myCourses.length,
+      itemBuilder: (_, i) {
+        final e = _myCourses[i];
+        final course = e['course'] is Map
+            ? Map<String, dynamic>.from(e['course'] as Map)
+            : e;
+        final title = (course['title'] ??
+                course['name'] ??
+                e['course_title'] ??
+                'دورة')
+            .toString();
+        final thumb = (course['thumbnail'] ??
+                course['image'] ??
+                '')
+            .toString();
+        final progress = e['progress'] ?? e['progress_percent'];
+        return GestureDetector(
+          onTap: () =>
+              context.push(RouteNames.courseDetails, extra: course),
+          child: Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: AppColors.surfaceRaised,
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: AppColors.line),
+            ),
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: thumb.isNotEmpty
+                      ? Image.network(
+                          ApiEndpoints.getImageUrl(thumb),
+                          width: 56,
+                          height: 56,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) =>
+                              _courseBox())
+                      : _courseBox(),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(title,
+                          textAlign: TextAlign.end,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.readexPro(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.ink)),
+                      if (progress != null)
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: 5),
+                          child: Text(
+                              'التقدم: $progress%',
+                              textAlign: TextAlign.end,
+                              style: GoogleFonts.readexPro(
+                                  fontSize: 11,
+                                  color:
+                                      AppColors.brandTeal)),
+                        ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Icon(Icons.chevron_left_rounded,
+                    size: 20, color: AppColors.inkSubtle),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _courseBox() => Container(
+        width: 56,
+        height: 56,
+        decoration: BoxDecoration(
+          color: AppColors.primarySoft,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Icon(Icons.menu_book_rounded,
+            size: 26, color: AppColors.brandTeal),
+      );
 
   Widget _buildHeader(
       BuildContext context, int enrolledCourses, int totalHours) {

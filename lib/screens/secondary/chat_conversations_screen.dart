@@ -11,6 +11,7 @@ import '../../services/teachers_service.dart';
 import '../../services/token_storage_service.dart';
 import '../../core/design/app_theme_context.dart';
 import '../../core/design/app_theme_extension.dart';
+import '../../widgets/student_bottom_nav.dart';
 
 /// Chat conversations list – WhatsApp-style, app colors.
 /// For both teachers and students.
@@ -68,25 +69,29 @@ class _ChatConversationsScreenState extends State<ChatConversationsScreen> {
     final isAr = Localizations.localeOf(context).languageCode == 'ar';
     final theme = AppThemeExtension.of(context);
     return Scaffold(
-      backgroundColor: theme.scaffoldBackground,
+      backgroundColor: AppColors.brandSand,
       appBar: AppBar(
         title: Text(
-          isAr ? 'المحادثات' : 'Chat',
+          isAr ? 'الرسائل' : 'Chat',
           style: GoogleFonts.readexPro(
             fontWeight: FontWeight.bold,
-            color: AppColors.goldPrimary,
+            color: AppColors.ink,
           ),
         ),
-        backgroundColor: AppColors.navyMid,
-        foregroundColor: AppColors.goldPrimary,
+        backgroundColor: AppColors.surfaceRaised,
+        foregroundColor: AppColors.ink,
         elevation: 0,
         surfaceTintColor: Colors.transparent,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded,
-              color: AppColors.goldPrimary),
-          onPressed: () => context.pop(),
-        ),
+        leading: context.canPop()
+            ? IconButton(
+                icon: const Icon(Icons.arrow_back_rounded,
+                    color: AppColors.ink),
+                onPressed: () => context.pop(),
+              )
+            : null,
       ),
+      bottomNavigationBar:
+          const StudentBottomNav(activeTab: 'messages'),
       body: _loading
           ? Center(child: CircularProgressIndicator(color: theme.icon))
           : _error != null
@@ -212,8 +217,19 @@ class _ChatConversationsScreenState extends State<ChatConversationsScreen> {
         (isAr ? 'مستخدم' : 'User');
     final avatar = otherMap['avatar'];
     final lastMsg = conv['lastMessage'] ?? conv['last_message'];
+    final lastType = lastMsg is Map
+        ? (lastMsg['attachment_type'] ?? lastMsg['attachmentType'])?.toString()
+        : null;
     final lastBody = lastMsg is Map
-        ? (lastMsg['body'] ?? lastMsg['text'] ?? '')
+        ? ((lastMsg['body'] ?? lastMsg['text'] ?? '').toString().isNotEmpty
+            ? (lastMsg['body'] ?? lastMsg['text']).toString()
+            : lastType == 'image'
+                ? (isAr ? 'صورة' : 'Image')
+                : lastType == 'video'
+                    ? (isAr ? 'فيديو' : 'Video')
+                    : lastType == 'audio'
+                        ? (isAr ? 'تسجيل صوتي' : 'Voice message')
+                        : '')
         : lastMsg?.toString() ?? '';
     final lastTime =
         lastMsg is Map ? (lastMsg['createdAt'] ?? lastMsg['created_at']) : null;

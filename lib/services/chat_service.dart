@@ -94,12 +94,24 @@ class ChatService {
   /// Send a message.
   Future<Map<String, dynamic>> sendMessage(
     String conversationId, {
-    required String body,
+    String body = '',
+    String? attachmentUrl,
+    String? attachmentType,
+    String? attachmentName,
+    int? attachmentSize,
+    int? durationSeconds,
   }) async {
     try {
       final response = await ApiClient.instance.post(
         ApiEndpoints.chatMessages(conversationId),
-        body: {'body': body},
+        body: {
+          'body': body,
+          if (attachmentUrl != null) 'attachment_url': attachmentUrl,
+          if (attachmentType != null) 'attachment_type': attachmentType,
+          if (attachmentName != null) 'attachment_name': attachmentName,
+          if (attachmentSize != null) 'attachment_size': attachmentSize,
+          if (durationSeconds != null) 'duration_seconds': durationSeconds,
+        },
         requireAuth: true,
       );
       if (response['success'] == true) {

@@ -57,6 +57,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to the camera to take your profile picture.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need microphone access so you can send voice messages to your teacher.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your photos to choose a profile picture.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

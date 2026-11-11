@@ -1,12 +1,18 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:record/record.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../core/design/app_colors.dart';
 import '../../core/api/api_endpoints.dart';
 import '../../services/chat_service.dart';
 import '../../services/chat_websocket_service.dart';
 import '../../services/profile_service.dart';
+import '../../services/upload_service.dart';
 import '../../core/design/app_theme_context.dart';
 import '../../core/design/app_theme_extension.dart';
 
@@ -32,6 +38,11 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
   final _scrollController = ScrollController();
   bool _loading = true;
   bool _sending = false;
+  bool _uploading = false;
+  bool _recording = false;
+  DateTime? _recordingStartedAt;
+  final _recorder = AudioRecorder();
+  final _picker = ImagePicker();
   List<Map<String, dynamic>> _messages = [];
   String? _currentUserId;
   StreamSubscription<Map<String, dynamic>>? _wsSubscription;
@@ -79,7 +90,164 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
     ChatWebSocketService.instance.disconnect();
     _controller.dispose();
     _scrollController.dispose();
+    _recorder.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickAttachment(String type) async {
+    if (_uploading || _recording) return;
+    XFile? picked;
+    if (type == 'image') {
+      picked = await _picker.pickImage(
+          source: ImageSource.gallery, imageQuality: 88);
+    } else if (type == 'video') {
+      picked = await _picker.pickVideo(
+          source: ImageSource.gallery,
+          maxDuration: const Duration(minutes: 10));
+    }
+    if (picked == null) return;
+    await _sendAttachment(File(picked.path), type);
+  }
+
+  Future<void> _toggleVoiceRecording() async {
+    if (_uploading) return;
+    if (_recording) {
+      final path = await _recorder.stop();
+      final started = _recordingStartedAt;
+      if (mounted) setState(() => _recording = false);
+      if (path != null && path.isNotEmpty) {
+        final seconds = started == null
+            ? null
+            : DateTime.now().difference(started).inSeconds.clamp(1, 3600);
+        await _sendAttachment(File(path), 'audio', durationSeconds: seconds);
+      }
+      return;
+    }
+    if (!await _recorder.hasPermission()) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('اسمح باستخدام الميكروفون لإرسال تسجيل صوتي')),
+        );
+      }
+      return;
+    }
+    final directory = await getTemporaryDirectory();
+    final path =
+        '${directory.path}/voice-${DateTime.now().millisecondsSinceEpoch}.m4a';
+    await _recorder.start(const RecordConfig(encoder: AudioEncoder.aacLc),
+        path: path);
+    if (mounted) {
+      setState(() {
+        _recording = true;
+        _recordingStartedAt = DateTime.now();
+      });
+    }
+  }
+
+  Future<void> _sendAttachment(File file, String type,
+      {int? durationSeconds}) async {
+    if (!mounted) return;
+    setState(() => _uploading = true);
+    try {
+      final url = await UploadService.instance.uploadChatAttachment(file);
+      final sent = await ChatService.instance.sendMessage(
+        widget.conversationId,
+        attachmentUrl: url,
+        attachmentType: type,
+        attachmentName: file.path.split(Platform.pathSeparator).last,
+        attachmentSize: await file.length(),
+        durationSeconds: durationSeconds,
+      );
+      if (!mounted) return;
+      setState(() => _messages.add(sent));
+      _scrollToBottom();
+    } catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text(
+                  'تعذر إرسال المرفق: ${error.toString().replaceFirst('Exception: ', '')}')),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _uploading = false);
+    }
+  }
+
+  void _showImagePreview(String imageUrl) {
+    showDialog<void>(
+      context: context,
+      barrierColor: Colors.black,
+      builder: (dialogContext) => Dialog.fullscreen(
+        backgroundColor: Colors.black,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: InteractiveViewer(
+                minScale: 0.8,
+                maxScale: 5,
+                child: Center(
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, __, ___) => const Icon(
+                      Icons.broken_image_outlined,
+                      color: Colors.white70,
+                      size: 56,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SafeArea(
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: IconButton.filled(
+                    onPressed: () => Navigator.of(dialogContext).pop(),
+                    icon: const Icon(Icons.close_rounded),
+                    color: Colors.white,
+                    style: IconButton.styleFrom(
+                      backgroundColor: Colors.black54,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAttachmentPicker(bool isAr) {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (sheetContext) => SafeArea(
+        child: Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.image_outlined),
+              title: Text(isAr ? 'إرسال صورة' : 'Send image'),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                _pickAttachment('image');
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.video_library_outlined),
+              title: Text(isAr ? 'إرسال فيديو' : 'Send video'),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                _pickAttachment('video');
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   /// Background refresh every 5 seconds – merges new messages without user notice.
@@ -251,9 +419,15 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
             _messages[idx] = {
               ..._messages[idx],
               ...sent,
+              'body': sent['body'] ?? _messages[idx]['body'],
               'id': sent['id'] ?? tempMsg['id'],
             };
           });
+        }
+        final note = sent['moderation_note']?.toString();
+        if (note != null && note.isNotEmpty) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(note)));
         }
       }
     } catch (e) {
@@ -316,7 +490,8 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
         elevation: 0,
         surfaceTintColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded, color: AppColors.goldPrimary),
+          icon: const Icon(Icons.arrow_back_rounded,
+              color: AppColors.goldPrimary),
           onPressed: () => context.pop(),
         ),
       ),
@@ -357,6 +532,12 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
     final isMe = senderId == _currentUserId;
     final createdAt = msg['createdAt'] ?? msg['created_at'];
     final failed = msg['failed'] == true;
+    final attachmentUrl =
+        (msg['attachment_url'] ?? msg['attachmentUrl'])?.toString() ?? '';
+    final attachmentType =
+        (msg['attachment_type'] ?? msg['attachmentType'])?.toString() ?? '';
+    final mediaUrl =
+        attachmentUrl.isEmpty ? '' : ApiEndpoints.getImageUrl(attachmentUrl);
 
     return Align(
       alignment: isMe
@@ -371,9 +552,7 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
           color: isMe ? theme.icon : theme.card,
-          border: isMe
-              ? null
-              : Border.all(color: theme.cardBorder),
+          border: isMe ? null : Border.all(color: theme.cardBorder),
           borderRadius: BorderRadius.only(
             topLeft: const Radius.circular(16),
             topRight: const Radius.circular(16),
@@ -391,14 +570,53 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              body,
-              style: GoogleFonts.readexPro(
-                fontSize: 15,
-                color: isMe ? AppColors.navyDeep : theme.cardTitle,
-                height: 1.4,
+            if (attachmentUrl.isNotEmpty) ...[
+              if (attachmentType == 'image')
+                GestureDetector(
+                  onTap: () => _showImagePreview(mediaUrl),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(mediaUrl,
+                        width: 220, height: 180, fit: BoxFit.cover),
+                  ),
+                )
+              else
+                InkWell(
+                  onTap: () => launchUrl(Uri.parse(mediaUrl),
+                      mode: LaunchMode.externalApplication),
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    constraints: const BoxConstraints(minWidth: 190),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: (isMe ? AppColors.navyDeep : theme.icon)
+                          .withValues(alpha: 0.10),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(mainAxisSize: MainAxisSize.min, children: [
+                      Icon(
+                          attachmentType == 'audio'
+                              ? Icons.play_circle_fill_rounded
+                              : Icons.play_arrow_rounded,
+                          color: isMe ? AppColors.navyDeep : theme.icon),
+                      const SizedBox(width: 8),
+                      Text(attachmentType == 'audio'
+                          ? (isAr ? 'تسجيل صوتي' : 'Voice message')
+                          : (isAr ? 'فيديو' : 'Video')),
+                    ]),
+                  ),
+                ),
+              if (body.isNotEmpty) const SizedBox(height: 8),
+            ],
+            if (body.isNotEmpty)
+              Text(
+                body,
+                style: GoogleFonts.readexPro(
+                  fontSize: 15,
+                  color: isMe ? AppColors.navyDeep : theme.cardTitle,
+                  height: 1.4,
+                ),
               ),
-            ),
             const SizedBox(height: 4),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -440,6 +658,18 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
       child: SafeArea(
         child: Row(
           children: [
+            IconButton(
+              tooltip: isAr ? 'صورة أو فيديو' : 'Image or video',
+              onPressed: _uploading || _recording
+                  ? null
+                  : () => _showAttachmentPicker(isAr),
+              icon: _uploading
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2))
+                  : const Icon(Icons.add_circle_outline_rounded),
+            ),
             Expanded(
               child: TextField(
                 controller: _controller,
@@ -471,6 +701,15 @@ class _ChatMessagesScreenState extends State<ChatMessagesScreen> {
               ),
             ),
             const SizedBox(width: 8),
+            IconButton(
+              tooltip: _recording
+                  ? (isAr ? 'إيقاف وإرسال' : 'Stop and send')
+                  : (isAr ? 'تسجيل صوتي' : 'Voice message'),
+              onPressed: _sending || _uploading ? null : _toggleVoiceRecording,
+              icon: Icon(
+                  _recording ? Icons.stop_circle_rounded : Icons.mic_rounded,
+                  color: _recording ? Colors.red : theme.icon),
+            ),
             Material(
               color: context.appTheme.icon,
               borderRadius: BorderRadius.circular(24),

@@ -450,6 +450,14 @@ class _InstructorProfileScreenState extends State<InstructorProfileScreen> {
                               _buildChatCard(l10n),
                               const SizedBox(height: 20),
                               _buildMenuTile(
+                                icon: Icons.event_available_rounded,
+                                label: Localizations.localeOf(context).languageCode == 'ar'
+                                    ? 'سوق الجلسات'
+                                    : 'Session marketplace',
+                                onTap: () => context.push(RouteNames.instructorMarketplace),
+                              ),
+                              const SizedBox(height: 12),
+                              _buildMenuTile(
                                 icon: Icons.settings_rounded,
                                 label: l10n.settings,
                                 onTap: () => context.push(RouteNames.settings),
