@@ -1,3 +1,5 @@
+import '../../services/currency_service.dart';
+
 enum BookingStatus {
   requested,
   pendingPayment,
@@ -97,10 +99,7 @@ class MoneyText {
 
   static String format(dynamic value, String? currency) {
     final minor = minorUnits(value);
-    final sign = minor < 0 ? '-' : '';
-    final abs = minor.abs();
-    final text = '$sign${abs ~/ 100}.${(abs % 100).toString().padLeft(2, '0')}';
-    final code = (currency == null || currency.isEmpty) ? 'USD' : currency;
-    return '$text $code';
+    // Auto-convert to the user's detected local currency when available.
+    return CurrencyService.instance.format(minor / 100, currency);
   }
 }

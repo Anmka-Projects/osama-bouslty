@@ -14,6 +14,7 @@ import 'core/api/api_endpoints.dart';
 import 'core/config/app_config_provider.dart';
 import 'core/config/theme_provider.dart';
 import 'services/token_storage_service.dart';
+import 'services/currency_service.dart';
 import 'l10n/app_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -38,6 +39,9 @@ void main() async {
       debugPrint('Screen protection initialization error: $e');
     }
   }
+
+  // Detect display currency from the user's country (best-effort)
+  await CurrencyService.instance.init();
 
   // Initialize app config provider
   final configProvider = AppConfigProvider();

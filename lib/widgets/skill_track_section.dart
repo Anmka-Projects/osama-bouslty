@@ -9,6 +9,7 @@ import '../core/navigation/route_names.dart';
 import '../core/skill_track/skill_track_catalog.dart';
 import '../l10n/app_localizations.dart';
 import '../services/skill_track_service.dart';
+import '../services/currency_service.dart';
 
 /// Skill-track ladder shown at the top of [AllCoursesScreen].
 class SkillTrackSection extends StatefulWidget {
@@ -253,7 +254,7 @@ class SkillTrackTierCard extends StatelessWidget {
                 Text(
                   isFree
                       ? l10n.skillTrackFree
-                      : '${priceNum.toInt()} $currency',
+                      : CurrencyService.instance.format(priceNum, currency),
                   style: GoogleFonts.readexPro(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,

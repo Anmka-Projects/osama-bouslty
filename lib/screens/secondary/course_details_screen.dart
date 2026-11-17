@@ -28,6 +28,7 @@ import '../../services/exams_service.dart';
 import '../../core/api/api_client.dart';
 import '../../services/enrollment_requests_service.dart';
 import '../../services/wishlist_service.dart';
+import '../../services/currency_service.dart';
 import '../../services/profile_service.dart';
 import '../../services/youtube_video_service.dart';
 import '../../services/live_session_reminder_service.dart';
@@ -903,9 +904,6 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
     }
 
     final rawCurrency = course['currency']?.toString().trim().toUpperCase();
-    final currencyLabel = rawCurrency == 'EGP'
-        ? 'EGP'
-        : (rawCurrency?.isNotEmpty == true ? rawCurrency! : 'EGP');
 
     return Container(
       padding: const EdgeInsets.all(20),
@@ -950,7 +948,9 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  isFree ? 'Free' : '${price.toInt()} $currencyLabel',
+                  isFree
+                      ? 'Free'
+                      : CurrencyService.instance.format(price, rawCurrency),
                   style: GoogleFonts.readexPro(
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
@@ -1698,11 +1698,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                   ),
                 ),
                 child: Text(
-                  l10n.egyptianPoundAmount(
-                    lessonPrice == lessonPrice.roundToDouble()
-                        ? lessonPrice.toInt().toString()
-                        : lessonPrice.toStringAsFixed(2),
-                  ),
+                  CurrencyService.instance.format(lessonPrice, 'EGP'),
                   style: GoogleFonts.readexPro(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
@@ -2280,9 +2276,10 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                   ),
                 if (price > 0)
                   Text(
-                    price == price.roundToDouble()
-                        ? '${price.toInt()}'
-                        : price.toStringAsFixed(2),
+                    CurrencyService.instance.format(
+                      price,
+                      session['currency']?.toString(),
+                    ),
                     style: GoogleFonts.readexPro(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
@@ -3503,9 +3500,6 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
     if (courseData == null) return;
 
     final price = LiveLessonUtils.price(lesson);
-    final priceText = price == price.roundToDouble()
-        ? price.toInt().toString()
-        : price.toStringAsFixed(2);
     final lessonTitle = lesson['title']?.toString().trim();
     final scheduled = LiveLessonUtils.scheduledAt(lesson);
     final when = scheduled != null
@@ -3602,7 +3596,7 @@ class _CourseDetailsScreenState extends State<CourseDetailsScreen>
                   ] else
                     const Spacer(),
                   Text(
-                    l10n.egyptianPoundAmount(priceText),
+                    CurrencyService.instance.format(price, 'EGP'),
                     style: GoogleFonts.readexPro(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,

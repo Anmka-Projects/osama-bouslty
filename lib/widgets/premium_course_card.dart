@@ -5,6 +5,7 @@ import '../core/localization/localization_helper.dart';
 import '../core/design/app_colors.dart';
 import '../core/design/app_theme_extension.dart';
 import '../l10n/app_localizations.dart';
+import '../services/currency_service.dart';
 
 /// Premium Course Card - Modern and Attractive Design
 class PremiumCourseCard extends StatelessWidget {
@@ -53,9 +54,6 @@ class PremiumCourseCard extends StatelessWidget {
             : int.tryParse('$lessonsRaw') ?? 0);
     final price = course['price'] ?? 0.0;
     final rawCurrency = course['currency']?.toString().trim().toUpperCase();
-    final currencyLabel = rawCurrency == 'EGP'
-        ? l10n.egyptianPoundShort
-        : (rawCurrency?.isNotEmpty == true ? rawCurrency! : l10n.egyptianPoundShort);
 
     final resolvedTitle = titleColor ?? theme.cardTitle;
     final resolvedInstructor =
@@ -197,7 +195,8 @@ class PremiumCourseCard extends StatelessWidget {
                     child: Text(
                       isFree
                           ? l10n.free
-                          : '${price is num ? price.toInt() : 0} $currencyLabel',
+                          : CurrencyService.instance
+                              .format(price, rawCurrency),
                       style: GoogleFonts.readexPro(
                         fontSize: 11,
                         fontWeight: FontWeight.bold,

@@ -12,6 +12,7 @@ import '../../core/design/app_radius.dart';
 import '../../models/app_config.dart';
 import '../../services/app_config_service.dart';
 import '../../services/payments_service.dart';
+import '../../services/currency_service.dart';
 import '../../core/skill_track/skill_track_utils.dart';
 import '../../l10n/app_localizations.dart';
 import '../../core/design/app_theme_context.dart';
@@ -120,7 +121,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   }
 
   String _formatAmount(double amount, {bool withMinus = false}) {
-    final value = '${amount.toStringAsFixed(2)} $_currencyCode';
+    final value =
+        CurrencyService.instance.format(amount, _currencyCode);
     return withMinus ? '-$value' : value;
   }
 

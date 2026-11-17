@@ -7,6 +7,7 @@ import '../../core/design/app_colors.dart';
 import '../../core/navigation/route_names.dart';
 import '../../models/trainer_marketplace.dart';
 import '../../services/trainer_marketplace_service.dart';
+import '../../services/currency_service.dart';
 import '../../widgets/bottom_nav.dart';
 
 class StudentDiscoverScreen extends StatefulWidget {
@@ -131,7 +132,9 @@ class _StudentDiscoverScreenState extends State<StudentDiscoverScreen> {
   }
 
   Widget _card(TrainerCard trainer) {
-    final price = trainer.startingPrice == null ? '' : '${trainer.startingPrice} USD / الساعة';
+    final price = trainer.startingPrice == null
+        ? ''
+        : '${CurrencyService.instance.format(trainer.startingPrice, trainer.currency)} / الساعة';
     return Container(
       margin: const EdgeInsets.only(top: 12),
       padding: const EdgeInsets.all(14),

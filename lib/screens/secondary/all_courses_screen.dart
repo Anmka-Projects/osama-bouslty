@@ -12,6 +12,7 @@ import '../../core/localization/localization_helper.dart';
 import '../../core/navigation/route_names.dart';
 import '../../widgets/bottom_nav.dart';
 import '../../core/design/app_theme_context.dart';
+import '../../services/currency_service.dart';
 // import '../../widgets/skill_track_section.dart';
 // import '../../core/skill_track/skill_track_utils.dart';
 import '../../services/courses_service.dart';
@@ -669,9 +670,6 @@ class _AllCoursesScreenState extends State<AllCoursesScreen> {
     final priceValue = pricing.displayPrice;
     final isFree = pricing.isFree;
     final rawCurrency = course['currency']?.toString().trim().toUpperCase();
-    final priceCurrencyLabel = rawCurrency == 'EGP'
-        ? context.l10n.egyptianPoundShort
-        : (rawCurrency?.isNotEmpty == true ? rawCurrency! : 'EGP');
 
     final thumbnail = course['thumbnail']?.toString() ?? '';
     final categoryName = course['category'] is Map
@@ -842,7 +840,8 @@ class _AllCoursesScreenState extends State<AllCoursesScreen> {
                     child: Text(
                       isFree
                           ? context.l10n.free
-                          : '${priceValue.toInt()} $priceCurrencyLabel',
+                          : CurrencyService.instance
+                              .format(priceValue, rawCurrency),
                       style: GoogleFonts.readexPro(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,

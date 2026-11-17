@@ -6,6 +6,7 @@ import '../../core/design/app_colors.dart';
 import '../../core/navigation/route_names.dart';
 import '../../l10n/app_localizations.dart';
 import '../../services/wishlist_service.dart';
+import '../../services/currency_service.dart';
 import '../../core/design/app_theme_context.dart';
 
 class BookmarkCoursesScreen extends StatefulWidget {
@@ -192,7 +193,8 @@ class _BookmarkCoursesScreenState extends State<BookmarkCoursesScreen> {
     final title = (course['title'] ?? l10n.noTitle).toString();
     final description = (course['description'] ?? '').toString();
     final price = course['price'];
-    final currency = (course['currency'] ?? l10n.egyptianPoundShort).toString();
+    final priceText = CurrencyService.instance
+        .format(price, course['currency']?.toString());
     final thumbUrl = (course['thumbnail'] ?? course['cover'] ?? course['image'])
         ?.toString()
         .trim();
@@ -255,7 +257,7 @@ class _BookmarkCoursesScreenState extends State<BookmarkCoursesScreen> {
                   ],
                   const SizedBox(height: 8),
                   Text(
-                    '${price ?? 0} $currency',
+                    priceText,
                     style: TextStyle(
                       color: context.appTheme.icon,
                       fontWeight: FontWeight.w700,
