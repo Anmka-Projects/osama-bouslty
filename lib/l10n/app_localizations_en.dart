@@ -1525,6 +1525,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Contact us on WhatsApp to complete payment manually.';
 
   @override
+  String get paymentCurrency => 'Payment currency';
+
+  @override
   String get checkoutNoPaymentMethods =>
       'No payment methods are available right now. Please contact support.';
 

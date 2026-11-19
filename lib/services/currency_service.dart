@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../core/api/api_client.dart';
 import '../core/api/api_endpoints.dart';
 
@@ -12,10 +13,27 @@ import '../core/api/api_endpoints.dart';
 ///
 /// If detection fails, everything falls back to the default currency (USD)
 /// and amounts are shown unchanged.
+/// A selectable currency shown to the student at checkout.
+class CurrencyOption {
+  final String code;
+  final String name;
+  final String symbol;
+  final int sortOrder;
+
+  const CurrencyOption({
+    required this.code,
+    required this.name,
+    required this.symbol,
+    this.sortOrder = 0,
+  });
+}
+
 class CurrencyService {
   CurrencyService._();
 
   static final CurrencyService instance = CurrencyService._();
+
+  static const _preferredKey = 'preferred_currency';
 
   String code = 'USD';
   String symbol = '\$';
@@ -23,6 +41,9 @@ class CurrencyService {
   String? country;
   bool isDefault = true;
   Map<String, double> rates = const {'USD': 1};
+
+  /// All active currencies from the backend (Gulf currencies first).
+  List<CurrencyOption> options = const [];
 
   bool _loaded = false;
   Future<void>? _pending;
@@ -33,6 +54,77 @@ class CurrencyService {
   }
 
   Future<void> _load() async {
+    await Future.wait([_loadDetected(), _loadCurrencyList()]);
+    await _applyPreferred();
+    _loaded = true;
+  }
+
+  Future<void> _loadCurrencyList() async {
+    try {
+      final response = await ApiClient.instance.get(
+        '${ApiEndpoints.baseUrl}/currency/list',
+        requireAuth: false,
+      );
+      final data = response['data'];
+      if (data is List) {
+        options = data
+            .whereType<Map<String, dynamic>>()
+            .map((c) => CurrencyOption(
+                  code: c['code']?.toString().toUpperCase() ?? '',
+                  name: c['name']?.toString() ?? '',
+                  symbol: c['symbol']?.toString() ??
+                      c['code']?.toString() ??
+                      '',
+                  sortOrder:
+                      (c['sortOrder'] as num?)?.toInt() ?? 0,
+                ))
+            .where((c) => c.code.isNotEmpty)
+            .toList();
+      }
+    } catch (e) {
+      debugPrint('CurrencyService: currency list failed: $e');
+    }
+  }
+
+  /// Applies the currency the student previously picked (if still valid).
+  Future<void> _applyPreferred() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final saved = prefs.getString(_preferredKey)?.toUpperCase();
+      if (saved == null || saved == code) return;
+      _applyCode(saved);
+    } catch (_) {}
+  }
+
+  bool _applyCode(String code) {
+    CurrencyOption? option;
+    for (final o in options) {
+      if (o.code == code) {
+        option = o;
+        break;
+      }
+    }
+    if (option == null || !rates.containsKey(code)) return false;
+    this.code = option.code;
+    symbol = option.symbol;
+    name = option.name;
+    isDefault = false;
+    return true;
+  }
+
+  /// Lets the student choose which currency to pay with.
+  /// Returns true when the selection was applied.
+  Future<bool> select(String code) async {
+    final applied = _applyCode(code.trim().toUpperCase());
+    if (!applied) return false;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_preferredKey, this.code);
+    } catch (_) {}
+    return true;
+  }
+
+  Future<void> _loadDetected() async {
     try {
       final locale =
           WidgetsBinding.instance.platformDispatcher.locale;

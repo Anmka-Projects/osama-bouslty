@@ -773,6 +773,65 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            if (CurrencyService.instance.options.length > 1) ...[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  l10n.paymentCurrency,
+                                  style: AppTextStyles.bodyMedium(
+                                    color: _theme.cardTitle,
+                                  ).copyWith(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 16),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 14,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: _theme.card,
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: _theme.cardBorder,
+                                    ),
+                                  ),
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton<String>(
+                                      value: CurrencyService.instance.code,
+                                      isExpanded: true,
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        color: _theme.icon,
+                                      ),
+                                      items: CurrencyService.instance.options
+                                          .map(
+                                            (c) => DropdownMenuItem<String>(
+                                              value: c.code,
+                                              child: Text(
+                                                '${c.name} (${c.symbol})',
+                                                style:
+                                                    AppTextStyles.bodyMedium(
+                                                  color: _theme.cardTitle,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                          .toList(),
+                                      onChanged: (value) async {
+                                        if (value == null) return;
+                                        final applied = await CurrencyService
+                                            .instance
+                                            .select(value);
+                                        if (applied && mounted) {
+                                          setState(() {});
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                             Padding(
                               padding:
                                   const EdgeInsets.only(bottom: 16), // mb-4

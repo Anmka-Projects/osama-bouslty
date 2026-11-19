@@ -2165,6 +2165,10 @@
   "@checkoutPaymentWhatsappDescription": {
     "description": "اشتراك دورة — وصف واتساب"
   },
+  "paymentCurrency": "عملة الدفع",
+  "@paymentCurrency": {
+    "description": "Label for the payment currency picker at checkout"
+  },
   "checkoutNoPaymentMethods": "لا تتوفر طرق دفع حاليًا. يرجى التواصل مع الدعم.",
   "@checkoutNoPaymentMethods": {
     "description": "عند تعطيل كل طرق الدفع من لوحة التحكم"

@@ -2816,6 +2816,12 @@ abstract class AppLocalizations {
   /// **'Contact us on WhatsApp to complete payment manually.'**
   String get checkoutPaymentWhatsappDescription;
 
+  /// Label for the payment currency picker at checkout
+  ///
+  /// In en, this message translates to:
+  /// **'Payment currency'**
+  String get paymentCurrency;
+
   /// Shown when all course payment toggles are off in admin
   ///
   /// In en, this message translates to:

@@ -2166,6 +2166,10 @@
   "@checkoutPaymentWhatsappDescription": {
     "description": "Course enrollment — WhatsApp description"
   },
+  "paymentCurrency": "Payment currency",
+  "@paymentCurrency": {
+    "description": "Label for the payment currency picker at checkout"
+  },
   "checkoutNoPaymentMethods": "No payment methods are available right now. Please contact support.",
   "@checkoutNoPaymentMethods": {
     "description": "Shown when all course payment toggles are off in admin"

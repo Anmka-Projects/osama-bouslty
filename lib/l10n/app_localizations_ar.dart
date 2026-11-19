@@ -1511,6 +1511,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'تواصل معنا على واتساب لإتمام الدفع يدويًا.';
 
   @override
+  String get paymentCurrency => 'عملة الدفع';
+
+  @override
   String get checkoutNoPaymentMethods =>
       'لا تتوفر طرق دفع حاليًا. يرجى التواصل مع الدعم.';
 
