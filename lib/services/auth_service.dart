@@ -179,6 +179,22 @@ class AuthService {
     }
   }
 
+  /// Public countries list for the register screen picker (no auth).
+  /// Returns a list of {id, name, code} maps; empty list on failure.
+  Future<List<Map<String, dynamic>>> getCountries() async {
+    try {
+      final response = await ApiClient.instance.get(
+        ApiEndpoints.countries,
+        requireAuth: false,
+      );
+      final data = response['data'];
+      if (data is List) {
+        return data.whereType<Map<String, dynamic>>().toList();
+      }
+    } catch (_) {}
+    return const [];
+  }
+
   /// Register user
   Future<AuthResponse> register({
     required String name,
@@ -191,6 +207,7 @@ class AuthService {
     String? studentType, // Only required for students
     String? categoryId, // Dynamic top-level category for either role
     String? subcategoryId, // Dynamic child category for either role
+    String? countryId, // Selected country from the register picker
   }) async {
     try {
       // Build request body
@@ -225,6 +242,10 @@ class AuthService {
         if (subcategoryId != null && subcategoryId.isNotEmpty) {
           body['subcategory_id'] = subcategoryId;
         }
+      }
+
+      if (countryId != null && countryId.isNotEmpty) {
+        body['country_id'] = countryId;
       }
 
       await _attachFcmToAuthBody(body);

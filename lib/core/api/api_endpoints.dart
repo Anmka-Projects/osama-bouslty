@@ -96,6 +96,9 @@ class ApiEndpoints {
 
   // Categories
   static String get categories => '$baseUrl/categories';
+
+  /// Public countries list for the register screen country picker. No auth.
+  static String get countries => '$baseUrl/countries';
   static String get adminCategories => '$baseUrl/admin/categories';
   static String categoryCourses(String id) => '$baseUrl/categories/$id/courses';
 

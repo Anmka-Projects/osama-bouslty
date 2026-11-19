@@ -48,10 +48,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String? _selectedCategoryId;
   String? _selectedSubcategoryId;
 
+  // Country picker (managed from the admin dashboard).
+  List<Map<String, dynamic>> _countries = const [];
+  String? _selectedCountryId;
+
   @override
   void initState() {
     super.initState();
     _loadCategories();
+    _loadCountries();
+  }
+
+  Future<void> _loadCountries() async {
+    try {
+      final countries = await AuthService.instance.getCountries();
+      if (!mounted) return;
+      setState(() => _countries = countries);
+    } catch (_) {}
   }
 
   Future<void> _loadCategories() async {
@@ -178,6 +191,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         studentType: _accountRole == 'student' ? _defaultStudentType : null,
         categoryId: _selectedCategoryId,
         subcategoryId: _selectedSubcategoryId,
+        countryId: _selectedCountryId,
       );
 
       if (!mounted) return;
@@ -380,6 +394,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ],
                             ),
                             const SizedBox(height: 16),
+
+                            // Country picker (optional) — list managed from
+                            // the admin dashboard countries page.
+                            if (_countries.isNotEmpty) ...[
+                              _buildLabel('الدولة'),
+                              const SizedBox(height: 8),
+                              _buildCategoryDropdown(
+                                value: _selectedCountryId,
+                                hint: 'اختر دولتك',
+                                icon: Icons.public_rounded,
+                                options: _countries,
+                                onChanged: (v) => setState(
+                                    () => _selectedCountryId = v),
+                                validatorMessage: '',
+                                required: false,
+                              ),
+                              const SizedBox(height: 16),
+                            ],
 
                             // Student type selector is temporarily disabled.
                             // _buildLabel(AppLocalizations.of(context)!.studentType),
@@ -632,6 +664,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     required ValueChanged<String?> onChanged,
     required String validatorMessage,
     Key? resetKey,
+    bool required = true,
   }) {
     final isAr = Localizations.localeOf(context).languageCode == 'ar';
     return Container(
@@ -673,7 +706,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           );
         }).toList(),
         onChanged: onChanged,
-        validator: (v) => (v == null || v.isEmpty) ? validatorMessage : null,
+        validator: (v) =>
+            required && (v == null || v.isEmpty) ? validatorMessage : null,
       ),
     );
   }
