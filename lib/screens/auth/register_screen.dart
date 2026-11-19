@@ -302,20 +302,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 style: GoogleFonts.readexPro(
                                     fontWeight: FontWeight.w700)),
                             const SizedBox(height: 8),
-                            SegmentedButton<String>(
-                              segments: const [
-                                ButtonSegment(
-                                    value: 'student',
-                                    label: Text('طالب'),
-                                    icon: Icon(Icons.school_outlined)),
-                                ButtonSegment(
-                                    value: 'instructor',
-                                    label: Text('مدرس'),
-                                    icon: Icon(Icons.co_present_outlined)),
-                              ],
-                              selected: {_accountRole},
-                              onSelectionChanged: (value) =>
-                                  setState(() => _accountRole = value.first),
+                            SizedBox(
+                              width: double.infinity,
+                              child: SegmentedButton<String>(
+                                segments: const [
+                                  ButtonSegment(
+                                      value: 'student',
+                                      label: Text('طالب')),
+                                  ButtonSegment(
+                                      value: 'parent',
+                                      label: Text('ولي أمر')),
+                                  ButtonSegment(
+                                      value: 'marketer',
+                                      label: Text('مسوق')),
+                                  ButtonSegment(
+                                      value: 'instructor',
+                                      label: Text('مدرس')),
+                                ],
+                                selected: {_accountRole},
+                                showSelectedIcon: false,
+                                expandedInsets: EdgeInsets.zero,
+                                onSelectionChanged: (value) => setState(() {
+                                  _accountRole = value.first;
+                                  if (_accountRole != 'student' &&
+                                      _accountRole != 'instructor') {
+                                    _selectedCategoryId = null;
+                                    _selectedSubcategoryId = null;
+                                  }
+                                }),
+                              ),
                             ),
                             if (_accountRole == 'instructor') ...[
                               const SizedBox(height: 8),
@@ -389,7 +404,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                 ),
                               )
-                            else if (_stageCategories.isNotEmpty) ...[
+                            else if ((_accountRole == 'student' ||
+                                    _accountRole == 'instructor') &&
+                                _stageCategories.isNotEmpty) ...[
                               _buildLabel(_accountRole == 'student'
                                   ? AppLocalizations.of(context)!
                                       .educationalStage
